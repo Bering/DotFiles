@@ -2,7 +2,7 @@
 label=↑temp3
 
 [virtual/dynamic]
-label=Δtemp3
+label=ΔCPU
 
 [libsensors/coretemp-isa-0000/0]
 label=CPU
