@@ -1,0 +1,48 @@
+{
+  "lastUpgradeScriptRun": "v6.5.0",
+  "lastVersion": "7.0.0",
+  "lastReleaseNotesDisplayed": "7.0.0",
+  "appId": "7d47e16d304af8c496e390a7270a424551de2d98",
+  "windowSettings": {
+    "x": 334,
+    "y": 210,
+    "width": 1251,
+    "height": 800,
+    "fullScreen": false,
+    "maximized": false
+  },
+  "registration": {
+    "email": "bering@ringlogic.com",
+    "name": "Bering",
+    "status": "activated",
+    "loginType": "github",
+    "providerToken": {
+      "access_token": "670b0032355b56dabe0b5d6f0cf8b4a2d6c9ec52",
+      "token_type": "bearer",
+      "scope": "admin:public_key,read:org,repo,user:email,workflow",
+      "expires_at": null
+    },
+    "date": "2020-03-28T23:14:12.179Z",
+    "EULA": {
+      "version": "1.5.0",
+      "status": "agree_verified"
+    }
+  },
+  "userId": "47262d95-f295-46a7-a4ec-7b3defcf3ac2",
+  "licensedFeatures": [],
+  "userFeatures": [
+    {
+      "betaFeaturesEnabled": false,
+      "name": "gitkraken"
+    },
+    {
+      "betaFeaturesEnabled": false,
+      "name": "glo"
+    },
+    {
+      "betaFeaturesEnabled": false,
+      "name": "timelines"
+    }
+  ],
+  "hasSeenNewUserOnboarding": true
+}

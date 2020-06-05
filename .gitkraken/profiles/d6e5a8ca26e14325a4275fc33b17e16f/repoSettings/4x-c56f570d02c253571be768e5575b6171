@@ -1,0 +1,28 @@
+{
+  "remoteParents": {
+    "github": {
+      "Bering": {
+        "Asteroids": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Asteroids"
+        },
+        "Lucid": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Lucid"
+        },
+        "Master-of-Stars": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Master-of-Stars"
+        },
+        "Wanderer": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Wanderer"
+        }
+      }
+    }
+  }
+}

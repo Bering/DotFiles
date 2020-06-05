@@ -1,0 +1,46 @@
+{
+  "remoteParents": {
+    "github": {
+      "Bering": {
+        "Asteroids": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Asteroids"
+        },
+        "Lucid": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Lucid"
+        },
+        "Master-of-Stars": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Master-of-Stars"
+        },
+        "Wanderer": {
+          "hostingServiceType": "github",
+          "owner": "Bering",
+          "name": "Wanderer"
+        }
+      }
+    }
+  },
+  "remoteHeadCollectionByRemoteName": {
+    "origin": {
+      "HEAD": {
+        "name": "HEAD",
+        "oid": "4e7dd648c06f04c361efe7b1a19beb85dd5fd3ac",
+        "local": 0,
+        "loid": "0000000000000000000000000000000000000000",
+        "symrefTarget": "refs/heads/master"
+      },
+      "refs/heads/master": {
+        "name": "refs/heads/master",
+        "oid": "4e7dd648c06f04c361efe7b1a19beb85dd5fd3ac",
+        "local": 1,
+        "loid": "0000000000000000000000000000000000000000",
+        "symrefTarget": null
+      }
+    }
+  }
+}

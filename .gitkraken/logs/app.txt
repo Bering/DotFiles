@@ -1,0 +1,30 @@
+[2020-03-28T23:12:56.136Z] Detecting Git and Git LFS: started
+[2020-03-28T23:12:57.777Z] Detected Git: 2.26.0
+[2020-03-28T23:12:57.781Z] Did not detect Git LFS
+[2020-03-28T23:15:02.146Z] Add user profile Bering: started.
+[2020-03-28T23:15:02.191Z] Add user profile Bering: finished. gk-log://duration?t=45
+[2020-06-05T00:43:07.956Z] Detecting Git and Git LFS: started
+[2020-06-05T00:43:08.743Z] Detected Git: 2.26.2
+[2020-06-05T00:43:09.177Z] Did not detect Git LFS
+[2020-06-05T00:43:38.928Z] Send usage data to Axosoft: started.
+[2020-06-05T00:43:38.999Z] Send usage data to Axosoft: finished. (Thank you!) gk-log://duration?t=71
+[2020-06-05T00:44:03.601Z] Open repository /home/phil/Documents/4x/: started.
+[2020-06-05T00:44:04.262Z] Open repository: finished. gk-log://duration?t=661
+[2020-06-05T00:44:20.186Z] Open repository /home/phil/Documents/Asteroids/: started.
+[2020-06-05T00:44:20.661Z] Open repository: finished. gk-log://duration?t=475
+[2020-06-05T00:45:05.358Z] Open repository /home/phil/Documents/Lucid/: started.
+[2020-06-05T00:45:05.977Z] Open repository: finished. gk-log://duration?t=619
+[2020-06-05T00:45:17.690Z] Open repository /home/phil/Documents/Master of Stars/: started.
+[2020-06-05T00:45:18.190Z] Open repository: finished. gk-log://duration?t=500
+[2020-06-05T00:45:46.126Z] Open repository /home/phil/Documents/Wanderer/: started.
+[2020-06-05T00:45:46.667Z] Open repository: finished. gk-log://duration?t=541
+[2020-06-05T00:46:09.827Z] Open repository /home/phil/Documents/Master of Stars/: started.
+[2020-06-05T00:46:10.158Z] Open repository: finished. gk-log://duration?t=331
+[2020-06-05T00:46:12.592Z] Open repository /home/phil/Documents/Lucid/: started.
+[2020-06-05T00:46:12.929Z] Open repository: finished. gk-log://duration?t=337
+[2020-06-05T00:46:15.095Z] Open repository /home/phil/Documents/Asteroids/: started.
+[2020-06-05T00:46:15.429Z] Open repository: finished. gk-log://duration?t=334
+[2020-06-05T00:46:17.868Z] Open repository /home/phil/Documents/4x/: started.
+[2020-06-05T00:46:18.199Z] Open repository: finished. gk-log://duration?t=331
+[2020-06-05T00:46:22.211Z] Open repository /home/phil/Documents/Wanderer/: started.
+[2020-06-05T00:46:22.492Z] Open repository: finished. gk-log://duration?t=281
