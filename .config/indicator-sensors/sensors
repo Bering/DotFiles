@@ -1,0 +1,14 @@
+[virtual/max]
+label=↑temp3
+
+[virtual/dynamic]
+label=Δtemp3
+
+[libsensors/coretemp-isa-0000/0]
+label=CPU
+
+[udisks2/TOSHIBA_THNSNJ128GMCU_64DS10GOTOGY]
+label=SSD
+
+[udisks2/HGST_HTS721010A9E630_JR10006P0KDHXF]
+label=HDD
