@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export PAGER:/usr/bin/less
 SETUVAR __done_notify_sound:1
 SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:64DF85
