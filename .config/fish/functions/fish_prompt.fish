@@ -21,6 +21,7 @@ function fish_prompt
     # ╰─>$ echo there
 
     set -l retc red
+    set -l laststatus $status # saving it so I can look it up later
     test $status = 0; and set retc green
 
     set -q __fish_git_prompt_showupstream
@@ -98,6 +99,16 @@ function fish_prompt
         set_color brown
         echo $job
     end
+
+    # Status if not 0 (can't use $status because it was overwritten by running commands in this script)
+    if [ $laststatus -ne 0 ]
+        set_color red
+        echo -n '│ [status: '
+        echo -n $laststatus
+        echo ']'
+    end
+
+    # Last line of prompt
     set_color normal
     set_color $retc
     echo -n '╰─>'
