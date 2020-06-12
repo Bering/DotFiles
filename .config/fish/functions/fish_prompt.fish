@@ -1,4 +1,5 @@
 function fish_prompt
+
     # This prompt shows:
     # - green lines if the last return command is OK, red otherwise
     # - your user name, in red if root or yellow otherwise
@@ -20,9 +21,16 @@ function fish_prompt
     # │ 1	15048	0%	arrêtée	sleep 100000
     # ╰─>$ echo there
 
+    # Modifications by Bering:
+    # - Changed a bunch of colors
+    # - White T: before the time, for consistency with other blocks
+    # - Show $status if it is not 0
+
+    # saving $status so I can look it up later because it will be overwritten while running commands in this function
+    set -l laststatus $status
+
     set -l retc red
-    set -l laststatus $status # saving it so I can look it up later
-    test $status = 0; and set retc green
+    test $status = 0; and set retc yellow
 
     set -q __fish_git_prompt_showupstream
     or set -g __fish_git_prompt_showupstream auto
@@ -48,12 +56,14 @@ function fish_prompt
 
     set_color $retc
     echo -n '┬─'
+
+    # username@host:pwd
     set_color -o green
     echo -n [
     if test "$USER" = root -o "$USER" = toor
         set_color -o red
     else
-        set_color -o yellow
+        set_color -o brgreen
     end
     echo -n $USER
     set_color -o white
@@ -70,7 +80,7 @@ function fish_prompt
     echo -n ']'
 
     # Date
-    #_nim_prompt_wrapper $retc '' (date +%X)
+    _nim_prompt_wrapper $retc T (date +%X)
 
     # Virtual Environment
     set -q VIRTUAL_ENV_DISABLE_PROMPT
@@ -100,12 +110,19 @@ function fish_prompt
         echo $job
     end
 
-    # Status if not 0 (can't use $status because it was overwritten by running commands in this script)
+    # Status, if not 0
     if [ $laststatus -ne 0 ]
         set_color red
-        echo -n '│ [status: '
+        echo -n '│ '
+        set_color green
+        echo -n '['
+        set_color brwhite
+        echo -n 'S:'
+        set_color $retc
         echo -n $laststatus
-        echo ']'
+        set_color green
+        echo -n ']'
+        echo
     end
 
     # Last line of prompt
