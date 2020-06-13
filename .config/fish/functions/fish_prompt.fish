@@ -30,7 +30,7 @@ function fish_prompt
     set -l laststatus $status
 
     set -l retc red
-    test $status = 0; and set retc yellow
+    test $status = 0; and set retc brgreen
 
     set -q __fish_git_prompt_showupstream
     or set -g __fish_git_prompt_showupstream auto
@@ -43,14 +43,14 @@ function fish_prompt
         set_color normal
         set_color $retc
         echo -n '─'
-        set_color -o green
+        set_color -o yellow
         echo -n '['
         set_color normal
         test -n $field_name
         and echo -n $field_name:
         set_color $retc
         echo -n $field_value
-        set_color -o green
+        set_color -o yellow
         echo -n ']'
     end
 
@@ -58,7 +58,7 @@ function fish_prompt
     echo -n '┬─'
 
     # username@host:pwd
-    set_color -o green
+    set_color -o yellow
     echo -n [
     if test "$USER" = root -o "$USER" = toor
         set_color -o red
@@ -76,7 +76,7 @@ function fish_prompt
     echo -n (prompt_hostname)
     set_color -o white
     echo -n :(prompt_pwd)
-    set_color -o green
+    set_color -o yellow
     echo -n ']'
 
     # Date
@@ -114,13 +114,13 @@ function fish_prompt
     if [ $laststatus -ne 0 ]
         set_color red
         echo -n '│ '
-        set_color green
+        set_color yellow
         echo -n '['
         set_color brwhite
         echo -n 'S:'
         set_color $retc
         echo -n $laststatus
-        set_color green
+        set_color yellow
         echo -n ']'
         echo
     end
