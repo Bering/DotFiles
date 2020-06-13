@@ -63,8 +63,5 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-# Listen to bluetooth headphones commands and convert to media actions that media players will react to
-mpris-proxy
-
 # start session
 exec $(get_session)
