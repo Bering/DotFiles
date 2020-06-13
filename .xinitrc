@@ -65,7 +65,7 @@ get_session(){
 
 feh -bg_max "~/Images/camo tech MSI.jpg"
 xsetroot -cursor_name left_ptr
-picom
+picom &
 
 # start session
 exec $(get_session)
