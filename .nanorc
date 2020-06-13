@@ -91,7 +91,6 @@ include "~/.config/nano/zsh.nanorc"
 
 set autoindent
 set linenumbers
-set mouse
 set smarthome
 set tabsize 4
 set tabstospaces
