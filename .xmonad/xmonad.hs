@@ -11,6 +11,7 @@ main = do
     , workspaces = myWorkspaces
     --, manageHook = manageDocks <+> manageHook defaultConfig
     --, layoutHook = avoidStruts  $  layoutHook defaultConfig
+    ,startupHook = myStartupHook
     }
     `removeKeysP` myKeysToRemove
     `additionalKeysP` myAdditionalKeys
@@ -53,4 +54,8 @@ myAdditionalKeys = [ ("M-c", kill)
                      , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
                                                   , ("S-", windows . W.shift)]
                    ]
-                   
+myStartupHook = do
+  spawn "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
+  spawn "xsetroot -cursor_name left_ptr"
+  spawn "killall picom"
+  spawn "picom &"
