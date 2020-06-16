@@ -47,6 +47,10 @@ myAdditionalKeys = [ ("M-c", kill)
                    , ("M-<Left>", sendMessage Shrink)
                    , ("M-<Right>", sendMessage Expand)
                    , ("M-v", pasteSelection)
+                   , ("M-1", spawn "alacritty")
+                   , ("M-2", spawn "nautilus")
+                   , ("M-3", spawn "firefox")
+                   , ("M-4", spawn "steam")
                    ]
                    ++
                    [ ("M-" ++ otherModMasks ++ key, action tag)
