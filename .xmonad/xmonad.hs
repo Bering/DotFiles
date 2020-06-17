@@ -1,25 +1,15 @@
 import System.Exit
 import XMonad
 import XMonad.Util.EZConfig
+import XMonad.Hooks.EwmhDesktops
 import qualified XMonad.StackSet as W
 import XMonad.Util.Paste
 import XMonad.Hooks.ManageDocks
 
-main = do
-  xmonad $ def
-    { terminal = myTerminal
-    , modMask = myModMask
-    , workspaces = myWorkspaces
-    --, manageHook = manageDocks <+> manageHook defaultConfig
-    --, layoutHook = avoidStruts  $  layoutHook defaultConfig
-    ,startupHook = myStartupHook
-    }
-    `removeKeysP` myKeysToRemove
-    `additionalKeysP` myAdditionalKeys
-
 myTerminal = "alacritty"
-myModMask = mod4Mask
+
 myWorkspaces = map show [1..12]
+
 myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-S-p"         -- gmrun
                  , "M-S-c"         -- kill
@@ -41,6 +31,7 @@ myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-8", "M-S-8"
                  , "M-9", "M-S-9"
                  ]
+
 myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    -- navigation
                    , ("M-<Up>", windows W.focusUp)
@@ -65,8 +56,19 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                      , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
                                                   , ("S-", windows . W.shift)]
                    ]
+
 myStartupHook = do
                   spawn "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
                   spawn "xsetroot -cursor_name left_ptr"
-                  spawn "killall picom"
-                  spawn "picom &"
+                  spawn "killall picom; picom &"
+
+main = do
+        xmonad $ ewmh def
+          { terminal = myTerminal
+          , modMask = mod4Mask
+          , borderWidth = 2
+          , workspaces = myWorkspaces
+          , startupHook = myStartupHook
+          }
+          `removeKeysP` myKeysToRemove
+          `additionalKeysP` myAdditionalKeys
