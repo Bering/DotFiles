@@ -2,6 +2,7 @@ import System.Exit
 import XMonad
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
 import XMonad.Util.SpawnOnce
@@ -10,6 +11,16 @@ import qualified XMonad.StackSet as W
 myTerminal = "alacritty"
 
 myWorkspaces = map show [1..12]
+
+myStartupHook = do
+                  spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
+                  spawnOnce "xsetroot -cursor_name left_ptr"
+                  spawnOnce "picom &"
+                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
+                  spawnOnce "nm-applet &"
+                  spawnOnce "pamac-tray"
+
+myLayout = ResizableTall 1 (3/100) (1/2) []
 
 myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-S-p"         -- gmrun
@@ -39,11 +50,13 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    -- navigation
                    , ("M-<Up>", windows W.focusUp)
                    , ("M-<Down>", windows W.focusDown)
-                   , ("M-S-<Up>", windows W.swapUp)
-                   , ("M-S-<Down>", windows W.swapDown)
+                   , ("M-<Left>", windows W.swapUp)
+                   , ("M-<Right>", windows W.swapDown)
                    -- layout manipulation
-                   , ("M-<Left>", sendMessage Shrink)
-                   , ("M-<Right>", sendMessage Expand)
+                   , ("M-S-<Left>", sendMessage Shrink)
+                   , ("M-S-<Right>", sendMessage Expand)
+                   , ("M-S-<Down>", sendMessage MirrorShrink)
+                   , ("M-S-<Up>", sendMessage MirrorExpand)
                    , ("M-<KP_Add>", sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>", sendMessage (IncMasterN (-1)))
                    -- shortcuts
@@ -63,13 +76,6 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                                                   , ("S-", windows . W.shift)]
                    ]
 
-myStartupHook = do
-                  spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
-                  spawnOnce "xsetroot -cursor_name left_ptr"
-                  spawnOnce "picom &"
-                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
-                  spawnOnce "nm-applet &"
-
 main = do
         xmonad $ ewmh def
           { terminal = myTerminal
@@ -77,6 +83,7 @@ main = do
           , borderWidth = 2
           , workspaces = myWorkspaces
           , startupHook = myStartupHook
+          , layoutHook = myLayout
           }
           `removeKeysP` myKeysToRemove
           `additionalKeysP` myAdditionalKeys
