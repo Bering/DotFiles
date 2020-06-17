@@ -1,10 +1,11 @@
 import System.Exit
 import XMonad
-import XMonad.Util.EZConfig
 import XMonad.Hooks.EwmhDesktops
-import qualified XMonad.StackSet as W
-import XMonad.Util.Paste
 import XMonad.Hooks.ManageDocks
+import XMonad.Util.EZConfig
+import XMonad.Util.Paste
+import XMonad.Util.SpawnOnce
+import qualified XMonad.StackSet as W
 
 myTerminal = "alacritty"
 
@@ -58,9 +59,11 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    ]
 
 myStartupHook = do
-                  spawn "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
-                  spawn "xsetroot -cursor_name left_ptr"
-                  spawn "killall picom; picom &"
+                  spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
+                  spawnOnce "xsetroot -cursor_name left_ptr"
+                  spawnOnce "picom &"
+                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
+                  spawnOnce "nm-applet &"
 
 main = do
         xmonad $ ewmh def
