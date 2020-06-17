@@ -21,6 +21,8 @@ myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-S-k"         -- swapUp
                  , "M-h"           -- Shrink
                  , "M-l"           -- Expand
+                 , "M-,"           -- increase number of clients in master
+                 , "M-,"           -- decrease number of clients in master
                  -- workspaces
                  , "M-1", "M-S-1"
                  , "M-2", "M-S-2"
@@ -39,8 +41,11 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    , ("M-<Down>", windows W.focusDown)
                    , ("M-S-<Up>", windows W.swapUp)
                    , ("M-S-<Down>", windows W.swapDown)
+                   -- layout manipulation
                    , ("M-<Left>", sendMessage Shrink)
                    , ("M-<Right>", sendMessage Expand)
+                   , ("M-<KP_Add>", sendMessage (IncMasterN 1))
+                   , ("M-<KP_Subtract>", sendMessage (IncMasterN (-1)))
                    -- shortcuts
                    , ("M-1", spawn myTerminal)
                    , ("M-2", spawn "nautilus")
