@@ -15,7 +15,6 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
 -- TODO:
--- * Struts thigny to reserve space for xmobar
 -- * xmobar trayer-padding doesn't work, it shows "Updating..." text
 -- * xmobar on all monitors
 -- * trayer on all workspaces
@@ -25,7 +24,7 @@ import qualified XMonad.StackSet as W
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
 -- * pulseaudio tray icon: pa-applet, pasystray or volctl?
 -- * Calculator key launch gnome-calculator, and make it float
--- * Lock key lock the session
+-- * Lock key and M-l lock the session
 -- * Home key launch Nautilus
 -- * polybar
 -- * prompts instead of dmenu?
@@ -110,7 +109,9 @@ main = do
           , borderWidth = 2
           , workspaces = myWorkspaces
           , startupHook = myStartupHook
-          , layoutHook = myLayout
+          , layoutHook = avoidStruts $ myLayout
+          , manageHook = manageDocks
+          , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
                                           { ppOutput  = \x -> hPutStrLn xmproc x
                                           , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]" -- Current workspace in xmobar
