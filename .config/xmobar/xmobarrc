@@ -1,17 +1,16 @@
 Config { 
 
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=11:bold:antialias=true"
+     font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true"
    , bgColor =      "black"
    , fgColor =      "gray"
    , position =     Top
-   , border =       BottomB
    , borderColor =  "#666666"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %date% <fc=#666666>|</fc> %uptime% <fc=#666666>|</fc> %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% <fc=#666666>|</fc> %memory% <fc=#666666>|</fc> %disku% <fc=#666666>|</fc> %diskio% <fc=#666666>|</fc> %dynnetwork% <fc=#666666>|</fc> %battery% <fc=#666666>|</fc>%trayerpad%"
+   , template = " %date% <fc=#666666>|</fc> %StdinReader% }{ <fc=#666666>|</fc> %multicpu% %cpufreq% %multicoretemp% <fc=#666666>|</fc> %memory% <fc=#666666>|</fc> %disku% <fc=#666666>|</fc> %diskio% <fc=#666666>|</fc> %dynnetwork% <fc=#666666>|</fc> %battery% <fc=#666666>|</fc>%trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -40,9 +39,6 @@ Config {
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
           Run Date           "%F (%a) %T" "date" 10
-
-        , Run Uptime         [ "--template" , "Up: <fc=darkgreen><hours>h <minutes>m</fc>"
-                             ] 10
 
         , Run StdinReader
 
