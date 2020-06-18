@@ -84,6 +84,7 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    , ("M-S-<Up>", sendMessage MirrorExpand)
                    , ("M-<KP_Add>", sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>", sendMessage (IncMasterN (-1)))
+                   , ("M-<Page_Down>", withFocused $ windows.W.sink)
                    -- shortcuts
                    , ("M-1", spawn myTerminal)
                    , ("M-2", spawn "nautilus")
