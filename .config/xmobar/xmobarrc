@@ -1,17 +1,17 @@
 Config { 
 
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=12:bold:antialias=true"
+     font =         "xft:Bitstream Vera Sans Mono:size=11:bold:antialias=true"
    , bgColor =      "black"
-   , fgColor =      "#eeeeee"
+   , fgColor =      "gray"
    , position =     Top
    , border =       BottomB
-   , borderColor =  "#646464"
+   , borderColor =  "#666666"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %date%, %uptime% }{ %multicpu% %cpufreq% %multicoretemp% | %memory% | %disku% | %diskio% | %dynnetwork% | %wireless% | %battery% "
+   , template = " %date% <fc=#666666>|</fc> %uptime% <fc=#666666>|</fc> %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% <fc=#666666>|</fc> %memory% <fc=#666666>|</fc> %disku% <fc=#666666>|</fc> %diskio% <fc=#666666>|</fc> %dynnetwork% <fc=#666666>|</fc> %battery% <fc=#666666>|</fc>%trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -41,8 +41,10 @@ Config {
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
           Run Date           "%F (%a) %T" "date" 10
 
-        , Run Uptime         [ "--template" , "Up: <fc=#ABABAB><hours>h <minutes>m</fc>"
+        , Run Uptime         [ "--template" , "Up: <fc=darkgreen><hours>h <minutes>m</fc>"
                              ] 10
+
+        , Run StdinReader
 
         -- cpu activity monitor
         , Run MultiCpu       [ "--template" , "Cpu: <total>%"
@@ -72,14 +74,14 @@ Config {
                           
         -- memory usage monitor
         , Run Memory         [ "--template" ,"Mem: <usedratio>%"
-                             , "--Low"      , "20"        -- units: %
+                             , "--Low"      , "50"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
-        , Run DiskU          [ ("/", "/ <free>"), ("/run/media/phil/Data", "| Data <free>") ]
+        , Run DiskU          [ ("/", "/ <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#666666>|</fc> Data <fc=darkorange><free></fc>") ]
                              [] 30
 
         , Run DiskIO         [ ("/", "<read>/<write>"), ("/run/media/phil/Data", "<read>/<write>") ]
@@ -88,18 +90,16 @@ Config {
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
                              , "--Low"      , "1000"       -- units: B/s
-                             , "--High"     , "5000"       -- units: B/s
+                             , "--High"     , "300000"       -- units: B/s
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
-        , Run Wireless       "" [] 10
-
         -- battery monitor
         , Run Battery        [ "--template" , "Batt: <acstatus>"
-                             , "--Low"      , "10"        -- units: %
-                             , "--High"     , "80"        -- units: %
+                             , "--Low"      , "20"        -- units: %
+                             , "--High"     , "70"        -- units: %
                              , "--low"      , "darkred"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkgreen"
@@ -113,5 +113,7 @@ Config {
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
 
+        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+        , Run Com "/home/phil/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
         ]
 }

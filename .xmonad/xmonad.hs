@@ -1,21 +1,29 @@
 import System.Exit
+import System.IO (hPutStrLn)
 import XMonad
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
+import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
 -- TODO:
+-- * Struts thigny to reserve space for xmobar
+-- * xmobar trayer-padding doesn't work, it shows "Updating..." text
+-- * xmobar on all monitors
+-- * trayer on all workspaces
+-- * trayer not a window (don't switch to it when navigating, never give it focus)
+-- * bluetooth systray icon
 -- * XMonad.Util.Spotify
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
 -- * pulseaudio tray icon: pa-applet, pasystray or volctl?
 -- * Calculator key launch gnome-calculator, and make it float
 -- * Lock key lock the session
 -- * Home key launch Nautilus
--- * xmobar
 -- * polybar
 -- * prompts instead of dmenu?
 
@@ -28,7 +36,7 @@ myStartupHook = do
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom &"
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
-                  spawnOnce "nm-applet &"
+                  spawnOnce "nm-applet --no-agent &"
                   spawnOnce "pamac-tray"
 
 myLayout = ResizableTall 1 (3/100) (1/2) []
@@ -89,6 +97,7 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    ]
 
 main = do
+        xmproc <- spawnPipe "xmobar"
         xmonad $ ewmh def
           { terminal = myTerminal
           , modMask = mod4Mask
@@ -96,6 +105,17 @@ main = do
           , workspaces = myWorkspaces
           , startupHook = myStartupHook
           , layoutHook = myLayout
+          , logHook = dynamicLogWithPP xmobarPP
+                                          { ppOutput  = \x -> hPutStrLn xmproc x
+                                          , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]" -- Current workspace in xmobar
+                                          , ppVisible = xmobarColor "cyan" ""                -- Visible but not current workspace
+                                          , ppHidden  = xmobarColor "orange" "" . wrap "" ""  -- Hidden workspaces in xmobar
+                                          , ppHiddenNoWindows = xmobarColor "gray" ""        -- Hidden workspaces (no windows)
+                                          , ppUrgent = xmobarColor "red" "" . wrap "!" "!"  -- Urgent workspace
+                                          , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
+                                          , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
+                                          , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+                                          }
           }
           `removeKeysP` myKeysToRemove
           `additionalKeysP` myAdditionalKeys
