@@ -8,6 +8,17 @@ import XMonad.Util.Paste
 import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
+-- TODO:
+-- * XMonad.Util.Spotify
+-- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+-- * pulseaudio tray icon: pa-applet, pasystray or volctl?
+-- * Calculator key launch gnome-calculator, and make it float
+-- * Lock key lock the session
+-- * Home key launch Nautilus
+-- * xmobar
+-- * polybar
+-- * prompts instead of dmenu?
+
 myTerminal = "alacritty"
 
 myWorkspaces = map show [1..12]
@@ -21,6 +32,7 @@ myStartupHook = do
                   spawnOnce "pamac-tray"
 
 myLayout = ResizableTall 1 (3/100) (1/2) []
+       ||| Full
 
 myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-S-p"         -- gmrun
