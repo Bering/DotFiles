@@ -6,6 +6,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
+import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
@@ -41,10 +42,10 @@ myStartupHook = do
                   spawnOnce "nm-applet --no-agent &"
                   spawnOnce "pamac-tray"
 
-myLayout = ResizableTall 1 (3/100) (1/2) []
-       ||| reflectHoriz (ResizableTall 1 (3/100) (1/2) [])
-       ||| Mirror (ResizableTall 1 (3/100) (1/2) [])
-       ||| noBorders (Full)
+myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
+       ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
+       ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
+       ||| (noBorders (Full))
 
 
 myKeysToRemove = [ "M-S-<Return>"  -- terminal
