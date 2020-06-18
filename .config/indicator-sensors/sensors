@@ -1,5 +1,5 @@
 [virtual/max]
-label=↑temp3
+label=↑CPU
 
 [virtual/dynamic]
 label=ΔCPU
