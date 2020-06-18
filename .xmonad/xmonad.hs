@@ -43,6 +43,7 @@ myStartupHook = do
 
 myLayout = ResizableTall 1 (3/100) (1/2) []
        ||| reflectHoriz (ResizableTall 1 (3/100) (1/2) [])
+       ||| Mirror (ResizableTall 1 (3/100) (1/2) [])
        ||| noBorders (Full)
 
 
