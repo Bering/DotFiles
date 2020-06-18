@@ -4,6 +4,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
@@ -40,7 +41,8 @@ myStartupHook = do
                   spawnOnce "pamac-tray"
 
 myLayout = ResizableTall 1 (3/100) (1/2) []
-       ||| Full
+       ||| noBorders (Full)
+
 
 myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-S-p"         -- gmrun
