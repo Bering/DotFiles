@@ -18,7 +18,6 @@ import qualified XMonad.StackSet as W
 -- * xmobar trayer-padding doesn't work, it shows "Updating..." text
 -- * xmobar on all monitors
 -- * trayer on all workspaces
--- * trayer not a window (don't switch to it when navigating, never give it focus)
 -- * bluetooth systray icon
 -- * XMonad.Util.Spotify
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
