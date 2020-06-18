@@ -5,6 +5,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Reflect
 import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
@@ -41,6 +42,7 @@ myStartupHook = do
                   spawnOnce "pamac-tray"
 
 myLayout = ResizableTall 1 (3/100) (1/2) []
+       ||| reflectHoriz (ResizableTall 1 (3/100) (1/2) [])
        ||| noBorders (Full)
 
 
