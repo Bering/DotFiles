@@ -17,12 +17,11 @@ import qualified XMonad.StackSet as W
 -- TODO:
 -- * XMonad.Util.Spotify
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
--- * Calculator key launch gnome-calculator, and make it float
 -- * Lock key and M-l lock the session
--- * Home key launch Nautilus
 -- * polybar
 -- * prompts instead of dmenu?
 -- * notifications (notify-osd?)
+-- * scratchpad?
 
 myTerminal = "alacritty"
 
@@ -88,6 +87,8 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    , ("M-2", spawn "nautilus")
                    , ("M-3", spawn "firefox")
                    , ("M-4", spawn "steam")
+                   , ("<XF86HomePage>", spawn "nautilus")
+                   , ("<XF86Calculator>", spawn "gnome-calculator")
                    -- misc
                    , ("M-c", kill)
                    , ("M-v", pasteSelection)
@@ -100,6 +101,10 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                                                   , ("S-", windows . W.shift)]
                    ]
 
+myManageHook = composeAll
+                  [ className =? "Gnome-calculator"        --> doFloat
+                  ]
+
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
         xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
@@ -110,7 +115,7 @@ main = do
           , workspaces = myWorkspaces
           , startupHook = myStartupHook
           , layoutHook = avoidStruts $ myLayout
-          , manageHook = manageDocks
+          , manageHook = myManageHook <+> manageDocks
           , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
                                           { ppOutput  = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
