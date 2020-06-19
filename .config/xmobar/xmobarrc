@@ -5,12 +5,12 @@ Config {
    , bgColor =      "black"
    , fgColor =      "gray"
    , position =     Top
-   , borderColor =  "#666666"
-
+   
    -- layout
+   , iconRoot = "/home/phil/.config/xmobar/icons"
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %date% <fc=#666666>|</fc> %StdinReader% }{ <fc=#666666>|</fc> %multicpu% %cpufreq% %multicoretemp% <fc=#666666>|</fc> %memory% <fc=#666666>|</fc> %disku% <fc=#666666>|</fc> %diskio% <fc=#666666>|</fc> %dynnetwork% <fc=#666666>|</fc> %battery% <fc=#666666>|</fc>%trayerpad%"
+   , template = "%date% <fc=#666666>|</fc> %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -43,7 +43,7 @@ Config {
         , Run StdinReader
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: <total>%"
+        , Run MultiCpu       [ "--template" , "<fc=#666666><icon=cpu.xbm/></fc> <total>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "80"         -- units: %
                              , "--low"      , "darkgreen"
@@ -69,7 +69,7 @@ Config {
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+        , Run Memory         [ "--template" ,"<fc=#666666><icon=mem.xbm/></fc><usedratio>% "
                              , "--Low"      , "50"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "darkgreen"
@@ -77,37 +77,20 @@ Config {
                              , "--high"     , "darkred"
                              ] 10
 
-        , Run DiskU          [ ("/", "/ <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#666666>|</fc> Data <fc=darkorange><free></fc>") ]
+        , Run DiskU          [ ("/", "<fc=#666666><icon=hdd.xbm/></fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#666666><icon=hdd.xbm/></fc> Data <fc=darkorange><free></fc>") ]
                              [] 30
 
-        , Run DiskIO         [ ("/", "<read>/<write>"), ("/run/media/phil/Data", "<read>/<write>") ]
+        , Run DiskIO         [ ("/", "<fc=#666666><icon=hdd.xbm/></fc> <read>/<write>"), ("/run/media/phil/Data", "<fc=#666666><icon=hdd.xbm/></fc> <read>/<write>") ]
                              [] 10
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
+        , Run DynNetwork     [ "--template" , "<fc=#666666><icon=wifi_02.xbm/></fc><dev>: <tx>kB/s|<rx>kB/s"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "300000"       -- units: B/s
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
-
-        -- battery monitor
-        , Run Battery        [ "--template" , "Batt: <acstatus>"
-                             , "--Low"      , "20"        -- units: %
-                             , "--High"     , "70"        -- units: %
-                             , "--low"      , "darkred"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkgreen"
-
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o"	, "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O"	, "<fc=#dAA520>Charging</fc>"
-                                       -- charged status
-                                       , "-i"	, "<fc=#006000>Charged</fc>"
-                             ] 50
 
         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
         , Run Com "/home/phil/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20

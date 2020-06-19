@@ -15,9 +15,7 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
 -- TODO:
--- * xmobar trayer-padding doesn't work, it shows "Updating..." text
 -- * xmobar on all monitors
--- * xmobar icons
 -- * trayer on all workspaces
 -- * XMonad.Util.Spotify
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
@@ -26,8 +24,7 @@ import qualified XMonad.StackSet as W
 -- * Home key launch Nautilus
 -- * polybar
 -- * prompts instead of dmenu?
--- * notifications notify-osd?
--- * battery systray icon with low battery notification
+-- * notifications (notify-osd?)
 
 myTerminal = "alacritty"
 
@@ -39,9 +36,10 @@ myStartupHook = do
                   spawnOnce "picom &"
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
                   spawnOnce "nm-applet --no-agent &"
-                  spawnOnce "pamac-tray"
                   spawnOnce "pasystray --notify=none &"
                   spawnOnce "blueman-tray &"
+                  spawnOnce "pamac-tray &"
+                  spawnOnce "cbatticon &"
 
 myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
        ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
