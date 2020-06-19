@@ -15,8 +15,6 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
 -- TODO:
--- * xmobar on all monitors
--- * trayer on all workspaces
 -- * XMonad.Util.Spotify
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
 -- * Calculator key launch gnome-calculator, and make it float
@@ -103,7 +101,8 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    ]
 
 main = do
-        xmproc <- spawnPipe "xmobar"
+        xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
+        xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
         xmonad $ ewmh def
           { terminal = myTerminal
           , modMask = mod4Mask
@@ -114,7 +113,7 @@ main = do
           , manageHook = manageDocks
           , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
-                                          { ppOutput  = \x -> hPutStrLn xmproc x
+                                          { ppOutput  = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
                                           , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]" -- Current workspace in xmobar
                                           , ppVisible = xmobarColor "cyan" ""                -- Visible but not current workspace
                                           , ppHidden  = xmobarColor "orange" "" . wrap "" ""  -- Hidden workspaces in xmobar
