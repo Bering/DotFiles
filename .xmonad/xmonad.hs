@@ -34,7 +34,7 @@ myStartupHook = do
                   spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom &"
-                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
+                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 --iconspacing 3 &"
                   spawnOnce "nm-applet --no-agent &"
                   spawnOnce "pasystray --notify=none &"
                   spawnOnce "blueman-tray &"
