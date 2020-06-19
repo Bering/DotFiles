@@ -15,8 +15,7 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
 -- TODO:
--- * XMonad.Util.Spotify
--- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+-- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
 -- * Lock key and M-l lock the session
 -- * polybar
 -- * prompts instead of dmenu?
@@ -89,6 +88,9 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    , ("M-4", spawn "steam")
                    , ("<XF86HomePage>", spawn "nautilus")
                    , ("<XF86Calculator>", spawn "gnome-calculator")
+                   , ("<XF86AudioMute>", spawn "amixer -D pulse set Master 1+ toggle")
+                   , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
+                   , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
                    -- misc
                    , ("M-c", kill)
                    , ("M-v", pasteSelection)
