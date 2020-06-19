@@ -3,14 +3,15 @@ Config {
    -- appearance
      font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true"
    , bgColor =      "black"
-   , fgColor =      "gray"
+   , fgColor =      "white"
+   , alpha = 0
    , position =     Top
    
    -- layout
    , iconRoot = "/home/phil/.config/xmobar/icons"
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%date% <fc=#666666>|</fc> %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
+   , template = "<fc=#00AA00><icon=manjaro.xbm/></fc> %date% <fc=#888888>|</fc> %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -43,10 +44,10 @@ Config {
         , Run StdinReader
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "<fc=#666666><icon=cpu.xbm/></fc> <total>%"
+        , Run MultiCpu       [ "--template" , "<fc=#888888><icon=cpu.xbm/></fc> <total>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "80"         -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
@@ -54,7 +55,7 @@ Config {
         , Run CpuFreq        [ "--template" , "<cpu0>GHz"
                              , "--Low"      , "1"
                              , "--High"     , "3"
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
@@ -63,36 +64,36 @@ Config {
         , Run MultiCoreTemp  [ "--template" , "<max>°C"
                              , "--Low"      , "70"        -- units: °C
                              , "--High"     , "90"        -- units: °C
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#666666><icon=mem.xbm/></fc><usedratio>% "
+        , Run Memory         [ "--template" ,"<fc=#888888><icon=mem.xbm/></fc><usedratio>% "
                              , "--Low"      , "50"        -- units: %
                              , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
-        , Run DiskU          [ ("/", "<fc=#666666><icon=hdd.xbm/></fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#666666><icon=hdd.xbm/></fc> Data <fc=darkorange><free></fc>") ]
+        , Run DiskU          [ ("/", "<fc=#888888><icon=hdd.xbm/></fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#888888><icon=hdd.xbm/></fc> Data <fc=darkorange><free></fc>") ]
                              [] 30
 
-        , Run DiskIO         [ ("/", "<fc=#666666><icon=hdd.xbm/></fc> <read>/<write>"), ("/run/media/phil/Data", "<fc=#666666><icon=hdd.xbm/></fc> <read>/<write>") ]
+        , Run DiskIO         [ ("/", "<fc=#888888><icon=hdd.xbm/></fc> <read>/<write>"), ("/run/media/phil/Data", "<fc=#888888><icon=hdd.xbm/></fc> <read>/<write>") ]
                              [] 10
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<fc=#666666><icon=wifi_02.xbm/></fc><dev>: <tx>kB/s|<rx>kB/s"
+        , Run DynNetwork     [ "--template" , "<fc=#888888><icon=wifi_02.xbm/></fc><dev>:<fc=#888888><icon=net_down_03.xbm/></fc><rx>kB/s<fc=#888888><icon=net_up_03.xbm/></fc><tx>kB/s"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "300000"       -- units: B/s
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
         , Run Com "/home/phil/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
-        ]
+   ]
 }
