@@ -17,6 +17,7 @@ import qualified XMonad.StackSet as W
 -- TODO:
 -- * xmobar trayer-padding doesn't work, it shows "Updating..." text
 -- * xmobar on all monitors
+-- * xmobar icons
 -- * trayer on all workspaces
 -- * bluetooth systray icon
 -- * XMonad.Util.Spotify
@@ -27,6 +28,7 @@ import qualified XMonad.StackSet as W
 -- * Home key launch Nautilus
 -- * polybar
 -- * prompts instead of dmenu?
+-- * notifications notify-osd?
 
 myTerminal = "alacritty"
 
