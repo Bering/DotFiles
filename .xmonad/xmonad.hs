@@ -19,16 +19,15 @@ import qualified XMonad.StackSet as W
 -- * xmobar on all monitors
 -- * xmobar icons
 -- * trayer on all workspaces
--- * bluetooth systray icon
 -- * XMonad.Util.Spotify
 -- * Volume keys: , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
--- * pulseaudio tray icon: pa-applet, pasystray or volctl?
 -- * Calculator key launch gnome-calculator, and make it float
 -- * Lock key and M-l lock the session
 -- * Home key launch Nautilus
 -- * polybar
 -- * prompts instead of dmenu?
 -- * notifications notify-osd?
+-- * battery systray icon with low battery notification
 
 myTerminal = "alacritty"
 
