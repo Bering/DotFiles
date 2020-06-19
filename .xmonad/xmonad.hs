@@ -41,6 +41,8 @@ myStartupHook = do
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
                   spawnOnce "nm-applet --no-agent &"
                   spawnOnce "pamac-tray"
+                  spawnOnce "pasystray --notify=none &"
+                  spawnOnce "blueman-tray &"
 
 myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
        ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
