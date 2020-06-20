@@ -20,7 +20,6 @@ import qualified XMonad.StackSet as W
 
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
--- * scratchpad?
 -- * touchpad tap to click and 2 fingers right-click
 -- * games (toggle struts maybe?)
 
