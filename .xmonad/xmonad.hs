@@ -20,7 +20,6 @@ import qualified XMonad.StackSet as W
 
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
--- * Lock key and M-l lock the session
 -- * scratchpad?
 -- * touchpad tap to click and 2 fingers right-click
 -- * games (toggle struts maybe?)
@@ -118,6 +117,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                    , ("M-c",                        kill)
                    , ("M-v",                        pasteSelection)
                    , ("M-l",                        spawn "slock")
+                   , ("<XF86ModeLock>",             spawn "slock")
                    , ("<XF86HomePage>",             spawn "nautilus")
                    , ("<XF86Calculator>",           spawn "gnome-calculator")
                    , ("<XF86AudioMute>",            spawn "amixer -D pulse set Master 1+ toggle")
