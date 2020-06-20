@@ -8,6 +8,9 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.ResizableTile
+import XMonad.Prompt
+import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Prompt.Ssh
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
 import XMonad.Util.Run (spawnPipe)
@@ -17,9 +20,11 @@ import qualified XMonad.StackSet as W
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
 -- * Lock key and M-l lock the session
--- * prompts instead of dmenu?
 -- * Find a way to toggle deadd-notification-center, because `kill -s USR1 (pidof deadd-notification-center)` is not practical...
 -- * scratchpad?
+-- * touchpad tap to click and 2 fingers right-click
+-- * screenshot on printscreen key
+-- * games (toggle struts maybe?)
 
 myTerminal = "alacritty"
 
@@ -42,11 +47,23 @@ myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
        ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
        ||| (noBorders (Full))
 
+promptConfig :: XPConfig
+promptConfig = def
+        { font = "xft:BitstreamVeraSansMono:size=10:bold:antialias=true"
+        , position = Top
+        , height = 20
+        , bgColor = "black"
+        , fgColor = "white"
+        , bgHLight = "#66EE66"
+        , fgHLight = "#666666"
+        }
 
 myKeysToRemove = [ "M-S-<Return>"  -- terminal
+                 , "M-p"           -- dmenu
                  , "M-S-p"         -- gmrun
                  , "M-S-c"         -- kill
                  , "M-S-q"         -- quit
+                 , "M-q"           -- recompile and restart
                  , "M-j"           -- focusDown
                  , "M-k"           -- focusUp
                  , "M-S-j"         -- swapDown
@@ -67,7 +84,10 @@ myKeysToRemove = [ "M-S-<Return>"  -- terminal
                  , "M-9", "M-S-9"
                  ]
 
-myAdditionalKeys = [ ("M-S-c", io exitSuccess)
+myAdditionalKeys = [ ("M-r r", restart "xmonad" True)
+                   , ("M-r x", io exitSuccess)
+                   , ("M-r b", spawn "sudo reboot")
+                   , ("M-r s", spawn "sudo shutdown")
                    -- navigation
                    , ("M-<Up>", windows W.focusUp)
                    , ("M-<Down>", windows W.focusDown)
@@ -82,6 +102,8 @@ myAdditionalKeys = [ ("M-S-c", io exitSuccess)
                    , ("M-<KP_Subtract>", sendMessage (IncMasterN (-1)))
                    , ("M-<Page_Down>", withFocused $ windows.W.sink)
                    -- shortcuts
+                   , ("M-p", shellPrompt promptConfig)
+                   , ("M-S-p", sshPrompt promptConfig)
                    , ("M-1", spawn myTerminal)
                    , ("M-2", spawn "nautilus")
                    , ("M-3", spawn "firefox")
