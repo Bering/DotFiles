@@ -109,7 +109,7 @@ myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
                    -- shortcuts
                    , ("M-p",                        shellPrompt promptConfig)
                    , ("M-S-p",                      sshPrompt promptConfig)
-                    , ("M-n",                       spawn "kill -s USR1 $(pidof deadd-notification-center)")
+                   , ("M-n",                        spawn "kill -s USR1 $(pidof deadd-notification-center)")
                    , ("M-1",                        spawn myTerminal)
                    , ("M-2",                        spawn "nautilus")
                    , ("M-3",                        spawn "firefox")
