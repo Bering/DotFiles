@@ -83,7 +83,8 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-9", "M-S-9"
                    ]
 
-myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
+myAdditionalKeys = [ ("M-r l",                      spawn "slock")
+                   , ("M-r r",                      restart "xmonad" True)
                    , ("M-r x",                      io exitSuccess)
                    , ("M-r b",                      spawn "sudo reboot")
                    , ("M-r s",                      spawn "sudo shutdown")
@@ -105,7 +106,7 @@ myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
                    , ("M-C-<Up>",                   sendMessage MirrorExpand)
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
-                   -- shortcuts
+                   -- applications
                    , ("M-p",                        shellPrompt promptConfig)
                    , ("M-S-p",                      sshPrompt promptConfig)
                    , ("M-n",                        spawn "kill -s USR1 $(pidof deadd-notification-center)")
@@ -113,15 +114,16 @@ myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
                    , ("M-2",                        spawn "nautilus")
                    , ("M-3",                        spawn "firefox")
                    , ("M-4",                        spawn "steam")
+                   -- misc
+                   , ("M-c",                        kill)
+                   , ("M-v",                        pasteSelection)
+                   , ("M-l",                        spawn "slock")
                    , ("<XF86HomePage>",             spawn "nautilus")
                    , ("<XF86Calculator>",           spawn "gnome-calculator")
                    , ("<XF86AudioMute>",            spawn "amixer -D pulse set Master 1+ toggle")
                    , ("<XF86AudioLowerVolume>",     spawn "amixer set Master 5%- unmute")
                    , ("<XF86AudioRaiseVolume>",     spawn "amixer set Master 5%+ unmute")
                    , ("<Print>",                    spawn "gnome-screenshot --interactive")
-                   -- misc
-                   , ("M-c",                        kill)
-                   , ("M-v",                        pasteSelection)
                    ]
                    -- workspaces (f1 - f12)
                    ++
