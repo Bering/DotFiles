@@ -20,7 +20,6 @@ import qualified XMonad.StackSet as W
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
 -- * Lock key and M-l lock the session
--- * Find a way to toggle deadd-notification-center, because `kill -s USR1 (pidof deadd-notification-center)` is not practical...
 -- * scratchpad?
 -- * touchpad tap to click and 2 fingers right-click
 -- * screenshot on printscreen key
@@ -104,6 +103,7 @@ myAdditionalKeys = [ ("M-r r", restart "xmonad" True)
                    -- shortcuts
                    , ("M-p", shellPrompt promptConfig)
                    , ("M-S-p", sshPrompt promptConfig)
+                   , ("M-n", spawn "kill -s USR1 $(pidof deadd-notification-center)")
                    , ("M-1", spawn myTerminal)
                    , ("M-2", spawn "nautilus")
                    , ("M-3", spawn "firefox")
