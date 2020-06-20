@@ -17,9 +17,8 @@ import qualified XMonad.StackSet as W
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
 -- * Lock key and M-l lock the session
--- * polybar
 -- * prompts instead of dmenu?
--- * notifications (notify-osd?)
+-- * Find a way to toggle deadd-notification-center, because `kill -s USR1 (pidof deadd-notification-center)` is not practical...
 -- * scratchpad?
 
 myTerminal = "alacritty"
@@ -27,12 +26,13 @@ myTerminal = "alacritty"
 myWorkspaces = map show [1..12]
 
 myStartupHook = do
+                  spawnOnce "deadd-notification-center &"
                   spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom &"
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 --iconspacing 3 &"
-                  spawnOnce "nm-applet --no-agent &"
-                  spawnOnce "pasystray --notify=none &"
+                  spawnOnce "nm-applet &"
+                  spawnOnce "pasystray &"
                   spawnOnce "blueman-tray &"
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
