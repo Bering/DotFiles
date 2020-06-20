@@ -23,7 +23,6 @@ import qualified XMonad.StackSet as W
 -- * Lock key and M-l lock the session
 -- * scratchpad?
 -- * touchpad tap to click and 2 fingers right-click
--- * screenshot on printscreen key
 -- * games (toggle struts maybe?)
 
 myTerminal = "alacritty"
@@ -119,6 +118,7 @@ myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
                    , ("<XF86AudioMute>",            spawn "amixer -D pulse set Master 1+ toggle")
                    , ("<XF86AudioLowerVolume>",     spawn "amixer set Master 5%- unmute")
                    , ("<XF86AudioRaiseVolume>",     spawn "amixer set Master 5%+ unmute")
+                   , ("<Print>",                    spawn "gnome-screenshot --interactive")
                    -- misc
                    , ("M-c",                        kill)
                    , ("M-v",                        pasteSelection)
@@ -133,6 +133,7 @@ myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
 
 myManageHook = composeAll
                    [ className =? "Gnome-calculator"        --> doFloat
+                   , className =? "Gnome-screenshot"        --> doFloat
                    ]
 
 main = do
