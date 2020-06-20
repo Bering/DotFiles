@@ -58,70 +58,70 @@ promptConfig = def
         , fgHLight = "#666666"
         }
 
-myKeysToRemove = [ "M-S-<Return>"  -- terminal
-                 , "M-p"           -- dmenu
-                 , "M-S-p"         -- gmrun
-                 , "M-S-c"         -- kill
-                 , "M-S-q"         -- quit
-                 , "M-q"           -- recompile and restart
-                 , "M-j"           -- focusDown
-                 , "M-k"           -- focusUp
-                 , "M-S-j"         -- swapDown
-                 , "M-S-k"         -- swapUp
-                 , "M-h"           -- Shrink
-                 , "M-l"           -- Expand
-                 , "M-,"           -- increase number of clients in master
-                 , "M-,"           -- decrease number of clients in master
-                 -- workspaces
-                 , "M-1", "M-S-1"
-                 , "M-2", "M-S-2"
-                 , "M-3", "M-S-3"
-                 , "M-4", "M-S-4"
-                 , "M-5", "M-S-5"
-                 , "M-6", "M-S-6"
-                 , "M-7", "M-S-7"
-                 , "M-8", "M-S-8"
-                 , "M-9", "M-S-9"
-                 ]
+myKeysToRemove =   [ "M-S-<Return>"  -- terminal
+                   , "M-p"           -- dmenu
+                   , "M-S-p"         -- gmrun
+                   , "M-S-c"         -- kill
+                   , "M-S-q"         -- quit
+                   , "M-q"           -- recompile and restart
+                   , "M-j"           -- focusDown
+                   , "M-k"           -- focusUp
+                   , "M-S-j"         -- swapDown
+                   , "M-S-k"         -- swapUp
+                   , "M-h"           -- Shrink
+                   , "M-l"           -- Expand
+                   , "M-,"           -- increase number of clients in master
+                   , "M-."           -- decrease number of clients in master
+                   -- workspaces
+                   , "M-1", "M-S-1"
+                   , "M-2", "M-S-2"
+                   , "M-3", "M-S-3"
+                   , "M-4", "M-S-4"
+                   , "M-5", "M-S-5"
+                   , "M-6", "M-S-6"
+                   , "M-7", "M-S-7"
+                   , "M-8", "M-S-8"
+                   , "M-9", "M-S-9"
+                   ]
 
-myAdditionalKeys = [ ("M-r r", restart "xmonad" True)
-                   , ("M-r x", io exitSuccess)
-                   , ("M-r b", spawn "sudo reboot")
-                   , ("M-r s", spawn "sudo shutdown")
+myAdditionalKeys = [ ("M-r r",                      restart "xmonad" True)
+                   , ("M-r x",                      io exitSuccess)
+                   , ("M-r b",                      spawn "sudo reboot")
+                   , ("M-r s",                      spawn "sudo shutdown")
                    -- navigation
-                   , ("M-<Up>", windows W.focusUp)
-                   , ("M-<Down>", windows W.focusDown)
-                   , ("M-<Left>", prevScreen)
-                   , ("M-<Right>", nextScreen)
+                   , ("M-<Up>",                     windows W.focusUp)
+                   , ("M-<Down>",                   windows W.focusDown)
+                   , ("M-<Left>",                   prevScreen)
+                   , ("M-<Right>",                  nextScreen)
                    -- move windows around
-                   , ("M-S-<Up>", windows W.swapUp)
-                   , ("M-S-<Down>", windows W.swapDown)
-                   , ("M-S-<Left>", shiftPrevScreen)
-                   , ("M-S-<Right>", shiftNextScreen)
-                   , ("M-<Page_Down>", withFocused $ windows.W.sink)
+                   , ("M-S-<Up>",                   windows W.swapUp)
+                   , ("M-S-<Down>",                 windows W.swapDown)
+                   , ("M-S-<Left>",                 shiftPrevScreen)
+                   , ("M-S-<Right>",                shiftNextScreen)
+                   , ("M-<Page_Down>",              withFocused $ windows.W.sink)
                    -- layout manipulation
-                   , ("M-C-<Left>", sendMessage Shrink)
-                   , ("M-C-<Right>", sendMessage Expand)
-                   , ("M-C-<Down>", sendMessage MirrorShrink)
-                   , ("M-C-<Up>", sendMessage MirrorExpand)
-                   , ("M-<KP_Add>", sendMessage (IncMasterN 1))
-                   , ("M-<KP_Subtract>", sendMessage (IncMasterN (-1)))
+                   , ("M-C-<Left>",                 sendMessage Shrink)
+                   , ("M-C-<Right>",                sendMessage Expand)
+                   , ("M-C-<Down>",                 sendMessage MirrorShrink)
+                   , ("M-C-<Up>",                   sendMessage MirrorExpand)
+                   , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
+                   , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
                    -- shortcuts
-                   , ("M-p", shellPrompt promptConfig)
-                   , ("M-S-p", sshPrompt promptConfig)
-                   , ("M-n", spawn "kill -s USR1 $(pidof deadd-notification-center)")
-                   , ("M-1", spawn myTerminal)
-                   , ("M-2", spawn "nautilus")
-                   , ("M-3", spawn "firefox")
-                   , ("M-4", spawn "steam")
-                   , ("<XF86HomePage>", spawn "nautilus")
-                   , ("<XF86Calculator>", spawn "gnome-calculator")
-                   , ("<XF86AudioMute>", spawn "amixer -D pulse set Master 1+ toggle")
-                   , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-                   , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+                   , ("M-p",                        shellPrompt promptConfig)
+                   , ("M-S-p",                      sshPrompt promptConfig)
+                    , ("M-n",                       spawn "kill -s USR1 $(pidof deadd-notification-center)")
+                   , ("M-1",                        spawn myTerminal)
+                   , ("M-2",                        spawn "nautilus")
+                   , ("M-3",                        spawn "firefox")
+                   , ("M-4",                        spawn "steam")
+                   , ("<XF86HomePage>",             spawn "nautilus")
+                   , ("<XF86Calculator>",           spawn "gnome-calculator")
+                   , ("<XF86AudioMute>",            spawn "amixer -D pulse set Master 1+ toggle")
+                   , ("<XF86AudioLowerVolume>",     spawn "amixer set Master 5%- unmute")
+                   , ("<XF86AudioRaiseVolume>",     spawn "amixer set Master 5%+ unmute")
                    -- misc
-                   , ("M-c", kill)
-                   , ("M-v", pasteSelection)
+                   , ("M-c",                        kill)
+                   , ("M-v",                        pasteSelection)
                    ]
                    -- workspaces (f1 - f12)
                    ++
@@ -132,8 +132,8 @@ myAdditionalKeys = [ ("M-r r", restart "xmonad" True)
                    ]
 
 myManageHook = composeAll
-                  [ className =? "Gnome-calculator"        --> doFloat
-                  ]
+                   [ className =? "Gnome-calculator"        --> doFloat
+                   ]
 
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
