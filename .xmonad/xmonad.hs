@@ -1,6 +1,7 @@
 import System.Exit
 import System.IO (hPutStrLn)
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -90,16 +91,21 @@ myAdditionalKeys = [ ("M-r r", restart "xmonad" True)
                    -- navigation
                    , ("M-<Up>", windows W.focusUp)
                    , ("M-<Down>", windows W.focusDown)
-                   , ("M-<Left>", windows W.swapUp)
-                   , ("M-<Right>", windows W.swapDown)
+                   , ("M-<Left>", prevScreen)
+                   , ("M-<Right>", nextScreen)
+                   -- move windows around
+                   , ("M-S-<Up>", windows W.swapUp)
+                   , ("M-S-<Down>", windows W.swapDown)
+                   , ("M-S-<Left>", shiftPrevScreen)
+                   , ("M-S-<Right>", shiftNextScreen)
+                   , ("M-<Page_Down>", withFocused $ windows.W.sink)
                    -- layout manipulation
-                   , ("M-S-<Left>", sendMessage Shrink)
-                   , ("M-S-<Right>", sendMessage Expand)
-                   , ("M-S-<Down>", sendMessage MirrorShrink)
-                   , ("M-S-<Up>", sendMessage MirrorExpand)
+                   , ("M-C-<Left>", sendMessage Shrink)
+                   , ("M-C-<Right>", sendMessage Expand)
+                   , ("M-C-<Down>", sendMessage MirrorShrink)
+                   , ("M-C-<Up>", sendMessage MirrorExpand)
                    , ("M-<KP_Add>", sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>", sendMessage (IncMasterN (-1)))
-                   , ("M-<Page_Down>", withFocused $ windows.W.sink)
                    -- shortcuts
                    , ("M-p", shellPrompt promptConfig)
                    , ("M-S-p", sshPrompt promptConfig)
