@@ -84,7 +84,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                    , ("M-r r",                      restart "xmonad" True)
                    , ("M-r x",                      io exitSuccess)
                    , ("M-r b",                      spawn "sudo reboot")
-                   , ("M-r s",                      spawn "sudo shutdown")
+                   , ("M-r h",                      spawn "sudo halt")
                    -- navigation
                    , ("M-<Up>",                     windows W.focusUp)
                    , ("M-<Down>",                   windows W.focusDown)
