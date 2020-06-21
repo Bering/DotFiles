@@ -21,7 +21,6 @@ import qualified XMonad.StackSet as W
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
 -- * touchpad tap to click and 2 fingers right-click
--- * games (toggle struts maybe?)
 
 myTerminal = "alacritty"
 
@@ -104,6 +103,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                    , ("M-C-<Up>",                   sendMessage MirrorExpand)
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
+                   , ("M-s",                        sendMessage ToggleStruts)
                    -- applications
                    , ("M-p",                        shellPrompt promptConfig)
                    , ("M-S-p",                      sshPrompt promptConfig)
