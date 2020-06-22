@@ -83,8 +83,8 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
 myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                    , ("M-r r",                      restart "xmonad" True)
                    , ("M-r x",                      io exitSuccess)
-                   , ("M-r b",                      spawn "sudo reboot")
-                   , ("M-r h",                      spawn "sudo halt")
+                   , ("M-r b",                      spawn "sudo shutdown -r now")
+                   , ("M-r h",                      spawn "sudo shutdown now")
                    -- navigation
                    , ("M-<Up>",                     windows W.focusUp)
                    , ("M-<Down>",                   windows W.focusDown)
