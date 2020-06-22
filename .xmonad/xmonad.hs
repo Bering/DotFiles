@@ -78,6 +78,8 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-7", "M-S-7"
                    , "M-8", "M-S-8"
                    , "M-9", "M-S-9"
+                   -- screens
+                   , "M-w", "M-e", "M-r"
                    ]
 
 myAdditionalKeys = [ ("M-r l",                      spawn "slock")
@@ -113,7 +115,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                    , ("M-3",                        spawn "firefox")
                    , ("M-4",                        spawn "steam")
                    -- misc
-                   , ("M-c",                        kill)
+                   , ("M-w",                        kill)
                    , ("M-v",                        pasteSelection)
                    , ("M-l",                        spawn "slock")
                    , ("<XF86ModeLock>",             spawn "slock")
