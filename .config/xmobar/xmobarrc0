@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true"
+     font =         "xft:SourceCode:size=11"
    , bgColor =      "black"
    , fgColor =      "white"
    , alpha = 0

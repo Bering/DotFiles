@@ -121,7 +121,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
             
 promptConfig :: XPConfig
 promptConfig = def
-        { font = "xft:BitstreamVeraSansMono:size=10:bold:antialias=true"
+        { font = "xft:SourceCode:size=10:bold:antialias=true"
         , position = Top
         , height = 20
         , bgColor = "black"
