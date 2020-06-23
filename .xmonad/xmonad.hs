@@ -37,6 +37,7 @@ myStartupHook = do
                   spawnOnce "blueman-tray &"
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
+                  spawnOnce "utox &"
 
 myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-p"           -- dmenu
