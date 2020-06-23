@@ -38,22 +38,6 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
 
-myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
-       ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
-       ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
-       ||| (noBorders (Full))
-
-promptConfig :: XPConfig
-promptConfig = def
-        { font = "xft:BitstreamVeraSansMono:size=10:bold:antialias=true"
-        , position = Top
-        , height = 20
-        , bgColor = "black"
-        , fgColor = "white"
-        , bgHLight = "#66EE66"
-        , fgHLight = "#666666"
-        }
-
 myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-p"           -- dmenu
                    , "M-S-p"         -- gmrun
@@ -133,11 +117,27 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                      , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
                                                   , ("S-", windows . W.shift)]
                    ]
+            
+promptConfig :: XPConfig
+promptConfig = def
+        { font = "xft:BitstreamVeraSansMono:size=10:bold:antialias=true"
+        , position = Top
+        , height = 20
+        , bgColor = "black"
+        , fgColor = "white"
+        , bgHLight = "#66EE66"
+        , fgHLight = "#666666"
+        }
 
 myManageHook = composeAll
                    [ className =? "Gnome-calculator"        --> doFloat
                    , className =? "Gnome-screenshot"        --> doFloat
                    ]
+
+myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
+        ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
+        ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
+        ||| (noBorders (Full))
 
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
