@@ -11,7 +11,7 @@ Config {
    , iconRoot = "/home/phil/.config/xmobar/icons"
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fc=#00AA00><icon=manjaro.xbm/></fc> %date% <fc=#888888>|</fc> %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
+   , template = "<fc=#00AA00><icon=manjaro.xbm/></fc> %date% <fc=#888888>|</fc> %StdinReader% }{ <fc=#888888>|</fc> %multicpu% %cpufreq% %multicoretemp% <fc=#888888>|</fc>%memory% <fc=#888888>|</fc> %disku% %diskio% <fc=#888888>|</fc>%dynnetwork% <fc=#888888>|</fc> %trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -70,12 +70,12 @@ Config {
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#888888><icon=mem.xbm/></fc><usedratio>% "
-                             , "--Low"      , "50"        -- units: %
-                             , "--High"     , "90"        -- units: %
-                             , "--low"      , "#00AA00"
+        , Run Memory         [ "--template" ,"<fc=#888888><icon=mem.xbm/></fc><free>G"
+                             , "--Low"      , "4096"
+                             , "--High"     , "12288"
+                             , "--low"      , "darkred"
                              , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--high"     , "#00AA00"
                              ] 10
 
         , Run DiskU          [ ("/", "<fc=#888888><icon=hdd.xbm/></fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#888888><icon=hdd.xbm/></fc> Data <fc=darkorange><free></fc>") ]
