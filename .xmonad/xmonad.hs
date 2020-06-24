@@ -67,7 +67,7 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-w", "M-e", "M-r"
                    ]
 
-myAdditionalKeys = [ ("M-r l",                      spawn "slock")
+myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    , ("M-r r",                      restart "xmonad" True)
                    , ("M-r x",                      io exitSuccess)
                    , ("M-r b",                      spawn "sudo shutdown -r now")
@@ -102,8 +102,8 @@ myAdditionalKeys = [ ("M-r l",                      spawn "slock")
                    -- misc
                    , ("M-w",                        kill)
                    , ("M-v",                        pasteSelection)
-                   , ("M-l",                        spawn "slock")
-                   , ("<XF86ModeLock>",             spawn "slock")
+                   , ("M-l",                        spawn "dm-tool lock")
+                   , ("<XF86ModeLock>",             spawn "dm-tool lock")
                    , ("<XF86HomePage>",             spawn "nautilus")
                    , ("<XF86Calculator>",           spawn "gnome-calculator")
                    , ("<XF86AudioMute>",            spawn "amixer -D pulse set Master 1+ toggle")
