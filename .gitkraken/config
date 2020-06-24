@@ -1,13 +1,13 @@
 {
   "lastUpgradeScriptRun": "v6.5.0",
-  "lastVersion": "7.0.0",
-  "lastReleaseNotesDisplayed": "7.0.0",
+  "lastVersion": "7.0.1",
+  "lastReleaseNotesDisplayed": "7.0.1",
   "appId": "7d47e16d304af8c496e390a7270a424551de2d98",
   "windowSettings": {
-    "x": 334,
-    "y": 210,
-    "width": 1251,
-    "height": 800,
+    "x": 0,
+    "y": 22,
+    "width": 956,
+    "height": 1054,
     "fullScreen": false,
     "maximized": false
   },

@@ -28,3 +28,8 @@
 [2020-06-05T00:46:18.199Z] Open repository: finished. gk-log://duration?t=331
 [2020-06-05T00:46:22.211Z] Open repository /home/phil/Documents/Wanderer/: started.
 [2020-06-05T00:46:22.492Z] Open repository: finished. gk-log://duration?t=281
+[2020-06-24T12:02:53.166Z] Detecting Git and Git LFS: started
+[2020-06-24T12:02:53.860Z] Detected Git: 2.27.0
+[2020-06-24T12:02:54.279Z] Did not detect Git LFS
+[2020-06-24T12:03:05.134Z] Open repository /home/phil/Documents/Wanderer/: started.
+[2020-06-24T12:03:05.756Z] Open repository: finished. gk-log://duration?t=622
