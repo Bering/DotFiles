@@ -20,7 +20,7 @@ import qualified XMonad.StackSet as W
 
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
--- * touchpad tap to click and 2 fingers right-click
+-- * touchpad tap to click and 2 fingers right-click and scroll the right way
 
 myTerminal = "alacritty"
 
