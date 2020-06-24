@@ -502,7 +502,7 @@ background_opacity: 0.7
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
 key_bindings:
-  - { key: N,         mods: Control,       action: SpawnNewInstance }
+  - { key: N,         mods: Control|Shift, action: SpawnNewInstance }
   - { key: F11,       mods: None,          action: ToggleFullscreen }
 
   # (Windows, Linux, and BSD only)
