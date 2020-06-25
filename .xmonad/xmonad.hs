@@ -2,6 +2,7 @@ import System.Exit
 import System.IO (hPutStrLn)
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.DynamicProjects
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -24,7 +25,7 @@ import qualified XMonad.StackSet as W
 
 myTerminal = "alacritty"
 
-myWorkspaces = map show [1..12]
+myWorkspaces = ["Main", "2", "3", "Steam", "Firefox", "6", "7", "8", "9", "10", "11", "Spotify"]
 
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
@@ -38,6 +39,22 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
                   spawnOnce "utox --silent &"
+
+myProjects :: [Project]
+myProjects = 
+        [ Project { projectName      = "Firefox"
+                  , projectDirectory = "~/"
+                  , projectStartHook = Just $ do spawn "firefox"
+                  }
+        , Project { projectName      = "Steam"
+                  , projectDirectory = "~/"
+                  , projectStartHook = Just $ do spawn "steam"
+                  }
+        , Project { projectName      = "Spotify"
+                  , projectDirectory = "~/"
+                  , projectStartHook = Just $ do spawn "spotify"
+                  }
+        ]
 
 myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-p"           -- dmenu
@@ -143,7 +160,7 @@ myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
         xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
-        xmonad $ ewmh def
+        xmonad $ ewmh $ dynamicProjects myProjects def
           { terminal = myTerminal
           , modMask = mod4Mask
           , borderWidth = 2
@@ -160,7 +177,7 @@ main = do
                                           , ppHiddenNoWindows = xmobarColor "gray" ""        -- Hidden workspaces (no windows)
                                           , ppUrgent = xmobarColor "red" "" . wrap "!" "!"  -- Urgent workspace
                                           , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
-                                          , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
+                                          , ppSep =  "<fc=#888888> | </fc>"                     -- Separators in xmobar
                                           , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                                           }
           }
