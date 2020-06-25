@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:SourceCode:size=11"
+     font =         "xft:SauceCodeProNerdFont:size=11"
    , bgColor =      "black"
    , fgColor =      "white"
    , alpha = 0
