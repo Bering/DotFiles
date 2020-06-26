@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:SauceCodeProNerdFont:size=11"
+     font =         "xft:SauceCodeProNerdFont:size=11:antialias=true:hinting=true"
    , bgColor =      "black"
    , fgColor =      "white"
    , alpha = 0
@@ -11,7 +11,7 @@ Config {
    , iconRoot = "/home/phil/.config/xmobar/icons"
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fc=#00AA00><icon=manjaro.xbm/></fc> %date% <fc=#888888>|</fc> %StdinReader% }{ <fc=#888888>|</fc> %multicpu% %cpufreq% %multicoretemp% <fc=#888888>|</fc>%memory% <fc=#888888>|</fc> %disku% %diskio% <fc=#888888>|</fc>%dynnetwork% <fc=#888888>|</fc> %trayerpad%"
+   , template = "<fc=#00AA00><icon=manjaro.xbm/></fc> %date% %StdinReader% }{ %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -39,17 +39,17 @@ Config {
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-          Run Date           "%F (%a) %T" "date" 10
+          Run Date           "%F (%a) %T <fc=#888888>\xf197</fc> " "date" 10
 
         , Run StdinReader
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "<fc=#888888><icon=cpu.xbm/></fc> <total>%"
+        , Run MultiCpu       [ "--template" , "<fc=#888888>\xf85a</fc> <total>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "80"         -- units: %
                              , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--high"     , "red"
                              ] 10
 
         , Run CpuFreq        [ "--template" , "<cpu0>GHz"
@@ -57,7 +57,7 @@ Config {
                              , "--High"     , "3"
                              , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--high"     , "red"
                              ] 50
 
         -- cpu core temperature monitor
@@ -66,31 +66,31 @@ Config {
                              , "--High"     , "90"        -- units: °C
                              , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--high"     , "red"
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#888888><icon=mem.xbm/></fc><free>G"
+        , Run Memory         [ "--template" ,"<fc=#888888>\xf2db</fc> <free>G"
                              , "--Low"      , "4096"
                              , "--High"     , "12288"
-                             , "--low"      , "darkred"
+                             , "--low"      , "red"
                              , "--normal"   , "darkorange"
                              , "--high"     , "#00AA00"
                              ] 10
 
-        , Run DiskU          [ ("/", "<fc=#888888><icon=hdd.xbm/></fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#888888><icon=hdd.xbm/></fc> Data <fc=darkorange><free></fc>") ]
+        , Run DiskU          [ ("/", "<fc=#888888>\xf7c9</fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#888888>\xf7c9</fc> Data <fc=darkorange><free></fc>") ]
                              [] 30
 
-        , Run DiskIO         [ ("/", "<fc=#888888><icon=hdd.xbm/></fc> <read>/<write>"), ("/run/media/phil/Data", "<fc=#888888><icon=hdd.xbm/></fc> <read>/<write>") ]
+        , Run DiskIO         [ ("/", "<fc=#888888>\xf7c9</fc> <read>/<write>"), ("/run/media/phil/Data", "<fc=#888888>\xf7c9</fc> <read>/<write>") ]
                              [] 10
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<fc=#888888><icon=wifi_02.xbm/></fc><dev>:<fc=#888888><icon=net_down_03.xbm/></fc><rx>kB/s<fc=#888888><icon=net_up_03.xbm/></fc><tx>kB/s"
-                             , "--Low"      , "1000"       -- units: B/s
-                             , "--High"     , "300000"       -- units: B/s
+        , Run DynNetwork     [ "--template" , "<fc=#888888>\xfaa8</fc> <dev> <fc=#888888>\xf0ed</fc> <rx>kB/s <fc=#888888>\xf0ee</fc> <tx>kB/s"
+                             , "--Low"      , "10000"       -- units: B/s
+                             , "--High"     , "300000"      -- units: B/s
                              , "--low"      , "#00AA00"
                              , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--high"     , "red"
                              ] 10
 
         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.

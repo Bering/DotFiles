@@ -171,13 +171,14 @@ main = do
           , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
                                           { ppOutput  = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
-                                          , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]" -- Current workspace in xmobar
-                                          , ppVisible = xmobarColor "cyan" ""                -- Visible but not current workspace
+                                          , ppSep =  " "                                      -- Separators in xmobar
+                                          , ppUrgent = xmobarColor "red" "" . wrap "!" "!"    -- Urgent workspace
+                                          , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]"  -- Current workspace in xmobar
+                                          , ppVisible = xmobarColor "cyan" ""                 -- Visible but not current workspace
                                           , ppHidden  = xmobarColor "orange" "" . wrap "" ""  -- Hidden workspaces in xmobar
-                                          --, ppHiddenNoWindows = xmobarColor "gray" ""        -- Hidden workspaces (no windows)
-                                          , ppUrgent = xmobarColor "red" "" . wrap "!" "!"  -- Urgent workspace
-                                          , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
-                                          , ppSep =  "<fc=#888888> | </fc>"                     -- Separators in xmobar
+                                          --, ppHiddenNoWindows = xmobarColor "gray" ""         -- Hidden workspaces (no windows)
+                                          , ppLayout = wrap "<fc=#888888>\xf928</fc> <fc=white>" "</fc>"
+                                          , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60 . wrap "<fc=#888888>\xf2d0</fc> <fc=white>" "</fc>" -- Title of active window in xmobar
                                           , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                                           }
           }
