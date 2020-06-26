@@ -32,7 +32,7 @@ myStartupHook = do
                   spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech MSI.jpg'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom &"
-                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 18 --iconspacing 3 &"
+                  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x000000 --height 18 --iconspacing 3 &"
                   spawnOnce "nm-applet &"
                   spawnOnce "pasystray &"
                   spawnOnce "blueman-tray &"
@@ -176,10 +176,9 @@ main = do
                                           , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]"  -- Current workspace in xmobar
                                           , ppVisible = xmobarColor "cyan" ""                 -- Visible but not current workspace
                                           , ppHidden  = xmobarColor "orange" "" . wrap "" ""  -- Hidden workspaces in xmobar
-                                          --, ppHiddenNoWindows = xmobarColor "gray" ""         -- Hidden workspaces (no windows)
+                                          , ppHiddenNoWindows = xmobarColor "gray" ""         -- Hidden workspaces (no windows)
                                           , ppLayout = wrap "<fc=#888888>\xf928</fc> <fc=white>" "</fc>"
-                                          , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60 . wrap "<fc=#888888>\xf2d0</fc> <fc=white>" "</fc>" -- Title of active window in xmobar
-                                          , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+                                          , ppOrder  = \(ws:l:t:ex) -> [ws,l]
                                           }
           }
           `removeKeysP` myKeysToRemove
