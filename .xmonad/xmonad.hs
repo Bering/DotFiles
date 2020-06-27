@@ -5,6 +5,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves
+import XMonad.Actions.WindowNavigation
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -93,24 +94,14 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    , ("M-r x",                      io exitSuccess)
                    , ("M-r b",                      spawn "sudo shutdown -r now")
                    , ("M-r h",                      spawn "sudo shutdown now")
-                   -- navigation
-                   , ("M-<Up>",                     windows W.focusUp)
-                   , ("M-<Down>",                   windows W.focusDown)
-                   , ("M-<Left>",                   prevScreen)
-                   , ("M-<Right>",                  nextScreen)
-                   , ("M-<Return>",                 promote)
-                   -- move windows around
-                   , ("M-S-<Up>",                   windows W.swapUp)
-                   , ("M-S-<Down>",                 windows W.swapDown)
-                   , ("M-S-<Left>",                 shiftPrevScreen)
-                   , ("M-S-<Right>",                shiftNextScreen)
-                   , ("M-<Page_Up>",                rotSlavesUp)
-                   , ("M-<Page_Down>",              rotSlavesDown)
                    -- layout manipulation
                    , ("M-C-<Left>",                 sendMessage Shrink)
                    , ("M-C-<Right>",                sendMessage Expand)
                    , ("M-C-<Down>",                 sendMessage MirrorShrink)
                    , ("M-C-<Up>",                   sendMessage MirrorExpand)
+                   , ("M-<Return>",                 promote)
+                   , ("M-<Page_Up>",                rotSlavesUp)
+                   , ("M-<Page_Down>",              rotSlavesDown)
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
                    , ("M-s",                        sendMessage ToggleStruts)
@@ -166,7 +157,9 @@ myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
         xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
-        xmonad $ ewmh $ dynamicProjects myProjects def
+        config <- withWindowNavigation (xK_Up, xK_Left, xK_Down, xK_Right)
+                $ ewmh
+                $ dynamicProjects myProjects def
           { terminal = myTerminal
           , modMask = mod4Mask
           , borderWidth = 2
@@ -189,3 +182,5 @@ main = do
           }
           `removeKeysP` myKeysToRemove
           `additionalKeysP` myAdditionalKeys
+        
+        xmonad config
