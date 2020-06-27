@@ -5,6 +5,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves
+import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowNavigation
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
@@ -179,6 +180,7 @@ main = do
                                           , ppLayout = wrap "<fc=#888888>\xf928</fc> <fc=white>" "</fc>"
                                           , ppOrder  = \(ws:l:t:ex) -> [ws,l]
                                           }
+                        >> updatePointer (0.5, 0.5) (0, 0)
           }
           `removeKeysP` myKeysToRemove
           `additionalKeysP` myAdditionalKeys
