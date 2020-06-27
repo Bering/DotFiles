@@ -4,6 +4,7 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Promote
+import XMonad.Actions.RotSlaves
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -103,7 +104,8 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    , ("M-S-<Down>",                 windows W.swapDown)
                    , ("M-S-<Left>",                 shiftPrevScreen)
                    , ("M-S-<Right>",                shiftNextScreen)
-                   , ("M-<Page_Down>",              withFocused $ windows.W.sink)
+                   , ("M-<Page_Up>",                rotSlavesUp)
+                   , ("M-<Page_Down>",              rotSlavesDown)
                    -- layout manipulation
                    , ("M-C-<Left>",                 sendMessage Shrink)
                    , ("M-C-<Right>",                sendMessage Expand)
