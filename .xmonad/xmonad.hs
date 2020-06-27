@@ -3,6 +3,7 @@ import System.IO (hPutStrLn)
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicProjects
+import XMonad.Actions.Promote
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -18,6 +19,7 @@ import XMonad.Util.Paste
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
+
 
 -- TODO:
 -- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
@@ -66,6 +68,7 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-k"           -- focusUp
                    , "M-S-j"         -- swapDown
                    , "M-S-k"         -- swapUp
+                   , "M-<Return>"    -- swapMain
                    , "M-h"           -- Shrink
                    , "M-l"           -- Expand
                    , "M-,"           -- increase number of clients in master
@@ -94,6 +97,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    , ("M-<Down>",                   windows W.focusDown)
                    , ("M-<Left>",                   prevScreen)
                    , ("M-<Right>",                  nextScreen)
+                   , ("M-<Return>",                 promote)
                    -- move windows around
                    , ("M-S-<Up>",                   windows W.swapUp)
                    , ("M-S-<Down>",                 windows W.swapDown)
