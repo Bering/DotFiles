@@ -44,6 +44,7 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
                   spawnOnce "utox --silent &"
+                  spawnOnce "nextcloud"
 
 myProjects :: [Project]
 myProjects = 
