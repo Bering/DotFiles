@@ -24,10 +24,6 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
 
--- TODO:
--- * XMonad.Util.Spotify or another way to make keyboard prev/next play/pause work
--- * touchpad tap to click and 2 fingers right-click and scroll the right way
-
 myTerminal = "alacritty"
 
 myWorkspaces = ["Main", "2", "3", "Steam", "Firefox", "6", "7", "8", "9", "10", "11", "Spotify"]
@@ -44,7 +40,8 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
                   spawnOnce "utox --silent &"
-                  spawnOnce "nextcloud"
+                  spawnOnce "nextcloud &"
+                  spawnOnce "redshift &"
 
 myProjects :: [Project]
 myProjects = 
