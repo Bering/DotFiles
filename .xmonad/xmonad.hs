@@ -15,9 +15,6 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spacing
-import XMonad.Prompt
-import XMonad.Prompt.Shell (shellPrompt)
-import XMonad.Prompt.Ssh
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
 import XMonad.Util.Run (spawnPipe)
@@ -106,8 +103,9 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
                    , ("M-s",                        sendMessage ToggleStruts)
                    -- applications
-                   , ("M-p",                        shellPrompt promptConfig)
-                   , ("M-S-p",                      sshPrompt promptConfig)
+                   , ("M-p",                        spawn "rofi -show drun -show-icons")
+                   , ("M-S-p",                      spawn "rofi -show run")
+                   , ("M-M1-p",                     spawn "rofi -show ssh")
                    , ("M-n",                        spawn "kill -s USR1 $(pidof deadd-notification-center)")
                    , ("M-1",                        spawn myTerminal)
                    , ("M-2",                        spawn "nautilus")
@@ -132,17 +130,6 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                      , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
                                                   , ("S-", windows . W.shift)]
                    ]
-            
-promptConfig :: XPConfig
-promptConfig = def
-        { font = "xft:SourceCode:size=10:bold:antialias=true"
-        , position = Top
-        , height = 20
-        , bgColor = "black"
-        , fgColor = "white"
-        , bgHLight = "#66EE66"
-        , fgHLight = "#666666"
-        }
 
 myManageHook = composeAll
                    [ className =? "Gnome-calculator"        --> doFloat
