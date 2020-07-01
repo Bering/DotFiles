@@ -26,7 +26,7 @@ import qualified XMonad.StackSet as W
 
 myTerminal = "alacritty"
 
-myWorkspaces = ["Main", "2", "3", "Steam", "Firefox", "6", "7", "8", "9", "10", "11", "Spotify"]
+myWorkspaces = ["\xf015", "2", "3", "\xf1b6", "\xf269", "6", "7", "8", "9", "10", "\xf661", "\xf1bc"]
 
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
@@ -45,15 +45,15 @@ myStartupHook = do
 
 myProjects :: [Project]
 myProjects = 
-        [ Project { projectName      = "Firefox"
-                  , projectDirectory = "~/"
-                  , projectStartHook = Just $ do spawn "firefox"
-                  }
-        , Project { projectName      = "Steam"
+        [ Project { projectName      = "\xf1b6"
                   , projectDirectory = "~/"
                   , projectStartHook = Just $ do spawn "steam"
                   }
-        , Project { projectName      = "Spotify"
+        , Project { projectName      = "\xf269"
+                  , projectDirectory = "~/"
+                  , projectStartHook = Just $ do spawn "firefox"
+                  }
+        , Project { projectName      = "\xf1bc"
                   , projectDirectory = "~/"
                   , projectStartHook = Just $ do spawn "spotify"
                   }
@@ -175,7 +175,7 @@ main = do
                                           , ppVisible = xmobarColor "cyan" ""                 -- Visible but not current workspace
                                           , ppHidden  = xmobarColor "orange" "" . wrap "" ""  -- Hidden workspaces in xmobar
                                           , ppHiddenNoWindows = xmobarColor "gray" ""         -- Hidden workspaces (no windows)
-                                          , ppLayout = wrap "<fc=#888888>\xf928</fc> <fc=white>" "</fc>"
+                                          , ppLayout = wrap " <fc=#888888>\xf928</fc> <fc=white>" "</fc>"
                                           , ppOrder  = \(ws:l:t:ex) -> [ws,l]
                                           }
                         >> updatePointer (0.5, 0.5) (0, 0)
