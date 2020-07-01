@@ -14,6 +14,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Spacing
 import XMonad.Prompt
 import XMonad.Prompt.Shell (shellPrompt)
 import XMonad.Prompt.Ssh
@@ -164,7 +165,9 @@ main = do
           , borderWidth = 2
           , workspaces = myWorkspaces
           , startupHook = myStartupHook
-          , layoutHook = avoidStruts $ myLayout
+          , layoutHook = avoidStruts 
+                          $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                          $ myLayout
           , manageHook = myManageHook <+> manageDocks
           , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
