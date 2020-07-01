@@ -149,10 +149,12 @@ myManageHook = composeAll
                    , className =? "Gnome-screenshot"        --> doFloat
                    ]
 
-myLayout = (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
-        ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
-        ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
-        ||| (noBorders (Full))
+myLayout = avoidStruts 
+            $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+            $ (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
+          ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
+          ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
+          ||| (noBorders (Full))
 
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
@@ -165,9 +167,7 @@ main = do
           , borderWidth = 2
           , workspaces = myWorkspaces
           , startupHook = myStartupHook
-          , layoutHook = avoidStruts 
-                          $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
-                          $ myLayout
+          , layoutHook = myLayout
           , manageHook = myManageHook <+> manageDocks
           , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
