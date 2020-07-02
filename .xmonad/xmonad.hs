@@ -51,6 +51,10 @@ myProjects =
                   , projectDirectory = "~/"
                   , projectStartHook = Just $ do spawn "firefox"
                   }
+        , Project { projectName      = "\xf661"
+                  , projectDirectory = "~/Téléchargements"
+                  , projectStartHook = Just $ do spawn "transmission-gtk"
+                  }
         , Project { projectName      = "\xf1bc"
                   , projectDirectory = "~/"
                   , projectStartHook = Just $ do spawn "spotify"
