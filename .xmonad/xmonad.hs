@@ -142,9 +142,9 @@ myManageHook = composeAll
 
 myLayout = avoidStruts 
             $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
-            $ (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (1/2) [])
-          ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (1/2) []))
-          ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (1/2) []))
+            $ (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (3/5) [])
+          ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (3/5) []))
+          ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (3/5) []))
           ||| (noBorders (Full))
 
 main = do
