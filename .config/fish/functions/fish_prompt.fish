@@ -47,7 +47,7 @@ function fish_prompt
         echo -n '['
         set_color normal
         test -n $field_name
-        and echo -n $field_name:
+        and echo -n $field_name ""
         set_color $retc
         echo -n $field_value
         set_color -o yellow
@@ -80,7 +80,7 @@ function fish_prompt
     echo -n ']'
 
     # Date
-    _nim_prompt_wrapper $retc T (date +%X)
+    _nim_prompt_wrapper $retc  (date +%X)
 
     # Virtual Environment
     set -q VIRTUAL_ENV_DISABLE_PROMPT
@@ -91,12 +91,12 @@ function fish_prompt
     # git
     set prompt_git (fish_git_prompt | string trim -c ' ()')
     test -n "$prompt_git"
-    and _nim_prompt_wrapper $retc G $prompt_git
+    and _nim_prompt_wrapper $retc  $prompt_git
 
     # Battery status
     type -q acpi
     and test (acpi -a 2> /dev/null | string match -r off)
-    and _nim_prompt_wrapper $retc B (acpi -b | cut -d' ' -f 4-)
+    and _nim_prompt_wrapper $retc  (acpi -b | cut -d' ' -f 4-)
 
     # New line
     echo
