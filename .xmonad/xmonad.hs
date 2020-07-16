@@ -38,7 +38,7 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
                   spawnOnce "utox --silent &"
-                  spawnOnce "redshift &"
+                  spawnOnce "redshift-gtk &"
 
 myProjects :: [Project]
 myProjects = 
