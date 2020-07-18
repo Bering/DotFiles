@@ -1,6 +1,9 @@
-# Defined in /tmp/fish.Zcat02/fish_greeting.fish @ line 2
+# Defined in /tmp/fish.3i932I/fish_greeting.fish @ line 2
 function fish_greeting
-	neofetch
+    cat /home/phil/Images/manjaro-banner.logo
+    echo
+	hello_user.sh --no-logo /home/phil/Data
+	echo
 	fortune -a
 	echo
 end
