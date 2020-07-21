@@ -10,6 +10,7 @@ import XMonad.Actions.WindowNavigation
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
@@ -136,8 +137,9 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    ]
 
 myManageHook = composeAll
-                   [ className =? "Gnome-calculator"        --> doFloat
-                   , className =? "Gnome-screenshot"        --> doFloat
+                   [ className =? "Gnome-calculator"      --> doCenterFloat
+                   , className =? "Gnome-screenshot"      --> doCenterFloat
+                   , className =? "Dragon-drag-and-drop"  --> doCenterFloat
                    ]
 
 myLayout = avoidStruts 
