@@ -90,11 +90,11 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
                    , "M-w", "M-e", "M-r"
                    ]
 
-myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
-                   , ("M-r r",                      restart "xmonad" True)
-                   , ("M-r x",                      io exitSuccess)
-                   , ("M-r b",                      spawn "sudo shutdown -r now")
-                   , ("M-r h",                      spawn "sudo shutdown now")
+myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
+                   , ("M-s r",                      restart "xmonad" True)
+                   , ("M-s x",                      io exitSuccess)
+                   , ("M-s b",                      spawn "sudo shutdown -r now")
+                   , ("M-s h",                      spawn "sudo shutdown now")
                    -- layout manipulation
                    , ("M-C-<Left>",                 sendMessage Shrink)
                    , ("M-C-<Right>",                sendMessage Expand)
@@ -105,7 +105,7 @@ myAdditionalKeys = [ ("M-r l",                      spawn "dm-tool lock")
                    , ("M-<Page_Down>",              rotSlavesDown)
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
-                   , ("M-s",                        sendMessage ToggleStruts)
+                   , ("M-b",                        sendMessage ToggleStruts) -- a.k.a. toggle bars
                    -- applications
                    , ("M-p",                        spawn "rofi -show drun -show-icons")
                    , ("M-S-p",                      spawn "rofi -show run")
