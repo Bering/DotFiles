@@ -118,7 +118,6 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-4",                        spawn "steam")
                    -- misc
                    , ("M-w",                        kill)
-                   , ("M-v",                        pasteSelection)
                    , ("M-l",                        spawn "dm-tool lock")
                    , ("<XF86ModeLock>",             spawn "dm-tool lock")
                    , ("<XF86HomePage>",             spawn "nautilus")
