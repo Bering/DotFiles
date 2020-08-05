@@ -70,7 +70,7 @@ Config {
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#888888>\xf2db</fc> <free>G"
+        , Run Memory         [ "--template" ,"<fc=#888888>\xf2db</fc> <free>M"
                              , "--Low"      , "4096"
                              , "--High"     , "12288"
                              , "--low"      , "red"
