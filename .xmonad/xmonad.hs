@@ -168,8 +168,8 @@ main = do
                                           , ppUrgent = xmobarColor "red" "" . wrap "!" "!"    -- Urgent workspace
                                           , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]"  -- Current workspace in xmobar
                                           , ppVisible = xmobarColor "cyan" ""                 -- Visible but not current workspace
-                                          , ppHidden  = xmobarColor "orange" "" . wrap "" ""  -- Hidden workspaces in xmobar
-                                          , ppHiddenNoWindows = xmobarColor "lightgreen" ""         -- Hidden workspaces (no windows)
+                                          , ppHidden  = xmobarColor "orange" ""               -- Hidden workspaces in xmobar
+                                          , ppHiddenNoWindows = xmobarColor "lightgreen" ""   -- Hidden workspaces (no windows)
                                           , ppLayout = wrap " <fc=#888888>\xf928</fc> <fc=white>" "</fc>"
                                           , ppOrder  = \(ws:l:t:ex) -> [ws,l]
                                           }
