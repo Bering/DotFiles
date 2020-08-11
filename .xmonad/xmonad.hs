@@ -11,6 +11,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
@@ -38,7 +39,6 @@ myStartupHook = do
                   spawnOnce "blueman-tray &"
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
-                  spawnOnce "utox --silent &"
                   spawnOnce "redshift-gtk &"
 
 myProjects :: [Project]
@@ -153,6 +153,7 @@ main = do
         xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
         config <- withWindowNavigation (xK_Up, xK_Left, xK_Down, xK_Right)
                 $ ewmh
+                $ fullscreenSupport
                 $ dynamicProjects myProjects def
           { terminal = myTerminal
           , modMask = mod4Mask
