@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR __done_notify_sound:1
 SETUVAR __fish_initialized:3100
-SETUVAR _fish_abbr_ls:lsd\x20\x2d\x2dgroup\x2ddirs\x20first
+SETUVAR _fish_abbr_ls:lsd\x20\x2d\x2dgroup\x2ddirs\x20first\x20\x2d\x2ddate\x20\x2b\x22\x25Y\x2d\x25m\x2d\x25d\x20\x25H\x3a\x25M\x3a\x25S\x22
 SETUVAR fish_color_autosuggestion:747369
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:99cc99

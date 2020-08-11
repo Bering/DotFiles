@@ -1,4 +1,5 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
+
 export TERMINAL=/usr/bin/alacritty
 export EDITOR=/usr/bin/micro
 export PAGER=/usr/bin/less
