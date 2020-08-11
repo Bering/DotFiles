@@ -11,7 +11,10 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.Accordion
 import XMonad.Layout.Fullscreen
+import XMonad.Layout.Grid
+import XMonad.Layout.Magnifier
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
@@ -23,10 +26,7 @@ import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
-
 myTerminal = "alacritty"
-
-myWorkspaces = ["\xf015", "2", "3", "\xf1b6", "\xf269", "6", "7", "8", "9", "10", "\xf661", "\xf1bc"]
 
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
@@ -40,6 +40,8 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
                   spawnOnce "redshift-gtk &"
+
+myWorkspaces = ["\xf015", "2", "3", "\xf1b6", "\xf269", "6", "7", "8", "9", "10", "\xf661", "\xf1bc"]
 
 myProjects :: [Project]
 myProjects = 
@@ -134,7 +136,7 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                      , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
                                                   , ("S-", windows . W.shift)]
                    ]
-
+                   
 myManageHook = composeAll
                    [ className =? "Gnome-calculator"      --> doCenterFloat
                    , className =? "Gnome-screenshot"      --> doCenterFloat
@@ -143,11 +145,13 @@ myManageHook = composeAll
 
 myLayout = avoidStruts 
             $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
-            $ (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (3/5) [])
-          ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (3/5) []))
+            $ (renamed [Replace "Left"] $ magnifiercz' 1.3 (ResizableTall 1 (3/100) (3/5) []))
+          ||| (renamed [Replace "Right"] $ reflectHoriz (magnifiercz' 1.3 (ResizableTall 1 (3/100) (3/5) [])))
           ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (3/5) []))
+          ||| Accordion
+          ||| magnifiercz 1.2 (Grid)
           ||| (noBorders (Full))
-
+                   
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
         xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
