@@ -8,25 +8,21 @@ This is a bare git repo for my dot files, just like DT explained here: https://y
 ![screenshot](Images/xmonad.png)
 
 ### Left screen:
-  - Reflected ResizableTall layout (renamed "Right" because the main window is on the right side)
-  - XMobar with transparent background and Nerf Fonts icons
+  - Spacing Magnified Reflected ResizableTall layout (renamed "Right" because the main window is on the right side)
+  - XMobar with transparent background and Nerd Fonts icons
   - Trayer:
     * nm-applet
     * pasystray
-    * utox
     * pamac-tray
     * cbatticon
-    * nextcloud
+    * redshift-gtk
     * blueman-tray
+  - zsh shell in Alacritty terminal (transparent background thanks to picom compositor)
+  - fish shell in Alacritty terminal (listing files using lsd with Nerd Font icons)
+  - Nautilus File Manager
   - My XMonad config in Visual Studio Code with the Atom Dark theme. Not Atom One Dark, Atom Dark.
-  - Fish shell in Alacritty terminal with Nerd Font icons
-    * transparent background thanks to picom compositor
-    * lsd
-    * tmatrix
   
 ### Right screen:
-  - ResizableTall layout (renamed left because the main window in on the left side)
+  - Spacing Magnified ResizableTall layout (renamed left because the main window in on the left side)
   - Reddit in Firefox
-  - Another Terminal
-    * neofetch
-    * fortune -a
+  - This readme on GitHub in Firefox
