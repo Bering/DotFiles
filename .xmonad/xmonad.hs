@@ -149,7 +149,7 @@ myLayout = avoidStruts
           ||| (renamed [Replace "Right"] $ reflectHoriz (magnifiercz' 1.3 (ResizableTall 1 (3/100) (3/5) [])))
           ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (3/5) []))
           ||| Accordion
-          ||| magnifiercz 1.2 (Grid)
+          ||| (renamed [Replace "Grid"] $ magnifiercz 1.2 (Grid))
           ||| (noBorders (Full))
                    
 main = do
