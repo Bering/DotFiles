@@ -14,7 +14,6 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.Accordion
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
-import XMonad.Layout.Magnifier
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
@@ -145,11 +144,11 @@ myManageHook = composeAll
 
 myLayout = avoidStruts 
             $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
-            $ (renamed [Replace "Left"] $ magnifiercz' 1.3 (ResizableTall 1 (3/100) (3/5) []))
-          ||| (renamed [Replace "Right"] $ reflectHoriz (magnifiercz' 1.3 (ResizableTall 1 (3/100) (3/5) [])))
+            $ (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (3/5) [])
+          ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (3/5) []))
           ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (3/5) []))
           ||| Accordion
-          ||| (renamed [Replace "Grid"] $ magnifiercz 1.2 (Grid))
+          ||| Grid
           ||| (noBorders (Full))
                    
 main = do
