@@ -47,6 +47,8 @@ local current_dir='%{$fg[blue]%}%~%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
-RPROMPT="${return_code}%{$reset_color%} [ %{$fg[yellow]%}%T%{$reset_color%}]"
-PROMPT="┬─[${user_host}]—[${current_dir}]${git_branch}
-╰─>%B%b "
+RPROMPT=""
+PROMPT="
+┬─[${user_host}]—[${current_dir}]${git_branch}%(1j.
+| %j background jobs.)
+%(?..%{$fg[red]%})╰─>%(?.. [%?])%{$reset_color%}%B%b "
