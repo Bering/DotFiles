@@ -12,7 +12,7 @@ function fish_prompt
     # - current background jobs, if any
 
     # It goes from:
-    # ┬─[nim@Hattori:~]─[11:39:00]
+    # ┬─[nim@Hattori:~]
     # ╰─>$ echo here
 
     # To:
@@ -80,7 +80,7 @@ function fish_prompt
     echo -n ']'
 
     # Date
-    _nim_prompt_wrapper $retc  (date +%X)
+    #_nim_prompt_wrapper $retc  (date +%X)
 
     # Virtual Environment
     set -q VIRTUAL_ENV_DISABLE_PROMPT
