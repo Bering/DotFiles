@@ -7,8 +7,17 @@ SAVEHIST=1000
 
 # Autocomplete (compinstall)
 zstyle :compinstall filename '/home/phil/.zshrc'
+zstyle ':completion:*' menu select
 autoload -Uz compinit
 compinit
+
+
+# Autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+# Syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # various flags
@@ -46,9 +55,14 @@ local user_host='%{$fg[green]%}%n@%m%{$reset_color%}'
 local current_dir='%{$fg[blue]%}%~%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
-ZSH_THEME_GIT_PROMPT_SUFFIX=""
 RPROMPT=""
 PROMPT="
 %B┬─[${user_host}%B]—[${current_dir}%B]${git_branch}%(1j.
 %B│ %j background jobs.)%b
 %B%(?..%{$fg[red]%})╰─>%(?.. [%?])%{$reset_color%}%b "
+
+
+# Autorun
+chafa ~/Images/Kyrsha\ devant\ l\'ordi.jpg
+echo
+fortune -a
