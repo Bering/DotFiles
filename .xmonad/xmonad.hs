@@ -39,6 +39,7 @@ myStartupHook = do
                   spawnOnce "pamac-tray &"
                   spawnOnce "cbatticon &"
                   spawnOnce "redshift-gtk &"
+                  spawnOnce "udiskie -a -s &"
 
 myWorkspaces = ["\xf015", "2", "3", "\xf1b6", "\xf269", "6", "7", "8", "9", "10", "\xf661", "\xf1bc"]
 
