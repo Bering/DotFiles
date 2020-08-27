@@ -1,0 +1,16 @@
+[Added Associations]
+text/plain=code-oss.desktop;org.gnome.gedit.desktop;
+text/x-lua=code-oss.desktop;
+text/x-csrc=code-oss.desktop;
+application/pdf=org.gnome.Evince.desktop;libreoffice-draw.desktop;
+image/jpeg=org.gnome.gThumb.desktop;
+image/png=org.gnome.gThumb.desktop;
+image/x-xbitmap=org.gnome.gThumb.desktop;
+text/html=firefox.desktop;
+application/octet-stream=vlc.desktop;
+
+[Default Applications]
+x-scheme-handler/discord-389176180877688832=discord-389176180877688832.desktop
+x-scheme-handler/discord-360541292578471937=discord-360541292578471937.desktop
+text/html=firefox.desktop
+inode/directory=org.gnome.Nautilus.desktop
