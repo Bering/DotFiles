@@ -1,6 +1,6 @@
 import System.Exit
 import System.IO (hPutStrLn)
-import XMonad
+import XMonad hiding ( (|||)) -- don't use the normal ||| operator, use the one provided in LayoutCombinators instead
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Promote
@@ -14,6 +14,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.Accordion
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
+import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
@@ -108,6 +109,13 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
                    , ("M-b",                        sendMessage ToggleStruts) -- a.k.a. toggle bars
+                   -- layout selection
+                   , ("M-l l",                      sendMessage $ JumpToLayout "Left")
+                   , ("M-l r",                      sendMessage $ JumpToLayout "Right")
+                   , ("M-l u",                      sendMessage $ JumpToLayout "Up")
+                   , ("M-l a",                      sendMessage $ JumpToLayout "Accordion")
+                   , ("M-l g",                      sendMessage $ JumpToLayout "Grid")
+                   , ("M-l f",                      sendMessage $ JumpToLayout "Full")
                    -- applications
                    , ("M-p",                        spawn "rofi -show drun -show-icons")
                    , ("M-S-p",                      spawn "rofi -show run")
@@ -120,7 +128,7 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-4",                        spawn "steam")
                    -- misc
                    , ("M-w",                        kill)
-                   , ("M-l",                        spawn "dm-tool lock")
+                   , ("M-k",                        spawn "dm-tool lock")
                    , ("<XF86ModeLock>",             spawn "dm-tool lock")
                    , ("<XF86HomePage>",             spawn "nautilus")
                    , ("<XF86Calculator>",           spawn "gnome-calculator")
@@ -146,15 +154,29 @@ myManageHook = composeAll
                    , className =? "Dragon-drag-and-drop"  --> doCenterFloat
                    ]
 
-myLayout = avoidStruts 
-            $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
-            $ (renamed [Replace "Left"] $ ResizableTall 1 (3/100) (3/5) [])
-          ||| (renamed [Replace "Right"] $ reflectHoriz (ResizableTall 1 (3/100) (3/5) []))
-          ||| (renamed [Replace "Up"] $ Mirror (ResizableTall 1 (3/100) (3/5) []))
-          ||| Accordion
-          ||| Grid
-          ||| (noBorders (Full))
-                   
+layoutLeft      = renamed [Replace "Left"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ ResizableTall 1 (3/100) (3/5) []
+layoutRight     = renamed [Replace "Right"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ reflectHoriz (ResizableTall 1 (3/100) (3/5) [])
+layoutUp        = renamed [Replace "Up"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ Mirror (ResizableTall 1 (3/100) (3/5) [])
+layoutAccordion = renamed [Replace "Accordion"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ Accordion
+layoutGrid      = renamed [Replace "Grid"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ Grid
+layoutFull      = noBorders(Full)
+myLayout        = layoutLeft ||| layoutRight ||| layoutUp ||| layoutAccordion ||| layoutGrid ||| layoutFull
+
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
         xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
