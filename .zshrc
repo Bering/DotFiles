@@ -7,6 +7,7 @@ SAVEHIST=1000
 
 # Autocomplete (compinstall)
 zstyle :compinstall filename '/home/phil/.zshrc'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 autoload -Uz compinit
 compinit
@@ -47,7 +48,7 @@ autoload colors; colors;
 
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "—[ %{$fg[yellow]%}${ref#refs/heads/}%{$reset_color%}]"
+  echo "─[ %{$fg[yellow]%}${ref#refs/heads/}%{$reset_color%}]"
 }
 
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
@@ -57,12 +58,12 @@ local git_branch='$(git_prompt_info)%{$reset_color%}'
 
 RPROMPT=""
 PROMPT="
-%B┬─[${user_host}%B]—[${current_dir}%B]${git_branch}%(1j.
+%B┬─[${user_host}%B]─[${current_dir}%B]${git_branch}%(1j.
 %B│ %j background jobs.)%b
 %B%(?..%{$fg[red]%})╰─>%(?.. [%?])%{$reset_color%}%b "
 
 
 # Autorun
-chafa ~/Images/Kyrsha\ devant\ l\'ordi.jpg
+chafa -s 60x45 ~/Images/Kyrsha\ devant\ l\'ordi.jpg
 echo
 fortune -a
