@@ -64,6 +64,9 @@ PROMPT="
 
 
 # Autorun
-chafa -s 60x45 ~/Images/Kyrsha\ devant\ l\'ordi.jpg
+#chafa -s 60x45 ~/Images/Kyrsha\ devant\ l\'ordi.jpg
+cat ~/Images/manjaro-banner.logo
+echo
+hello_user --no-logo /mnt/Data
 echo
 fortune -a
