@@ -24,6 +24,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
+import subprocess
+
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget, hook
@@ -162,15 +165,18 @@ extension_defaults = widget_defaults.copy()
 
 widgets_screen_1 = [
     widget.GroupBox(),
+    widget.CurrentLayoutIcon(),
     widget.CurrentLayout(),
-    widget.WindowName(),
+    widget.Spacer(),
     widget.Clock(format='%Y-%m-%d %a %H:%M %p'),
-    widget.Chord(
-        chords_colors={
-            'launch': ("#ff0000", "#ffffff"),
-        },
-        name_transform=lambda name: name.upper(),
-    ),
+    widget.Pomodoro(),
+    widget.Spacer(),
+    widget.CPU(format=" {freq_current}GHz {load_percent}%"),
+    widget.Memory(format=" {MemFree}M"),
+    widget.ThermalSensor(tag_sensor="Package id 0"),
+    widget.DF(partition="/", format=" {p} {uf}{m}", visible_on_warn=False, warn_space=10),
+    widget.DF(partition="/mnt/Data", format=" {p} {uf}{m}", visible_on_warn=False, warn_space=10),
+    widget.Net(format=" {down}  {up}"),
     widget.Systray(),
 ]
 
