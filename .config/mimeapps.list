@@ -8,9 +8,11 @@ image/png=org.gnome.gThumb.desktop;
 image/x-xbitmap=org.gnome.gThumb.desktop;
 text/html=firefox.desktop;
 application/octet-stream=vlc.desktop;
+x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
+x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
 
 [Default Applications]
 x-scheme-handler/discord-389176180877688832=discord-389176180877688832.desktop
 x-scheme-handler/discord-360541292578471937=discord-360541292578471937.desktop
-text/html=firefox.desktop
 inode/directory=org.gnome.Nautilus.desktop
+x-scheme-handler/etcher=balena-etcher-electron.desktop
