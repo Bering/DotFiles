@@ -63,6 +63,8 @@ keys = [
     # TODO: promote (swap with master)
 
     # Layout navigation
+    Key("M-A-<Left>",             lazy.to_screen(0),                                  desc="Move focus to screen 0"),
+    Key("M-A-<Right>",            lazy.to_screen(1),                                  desc="Move focus to screen 1"),
     Key("M-<Up>",                 lazy.layout.up(),                                   desc="Move focus up in stack pane"),
     Key("M-<Down>",               lazy.layout.down(),                                 desc="Move focus down in stack pane"),
     Key("M-<Left>",               lazy.layout.left(),                                 desc="Move focus down in stack pane"),
@@ -230,6 +232,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'Gnome-calculator'},
     {'wmclass': 'Gnome-screenshot'},
     {'wmclass': 'Dragon-drag-and-drop'},
+    {'wname': 'Steam Login'},
     {'wname': 'Steam Guard - Computer Authorization Required'}
 ])
 auto_fullscreen = True
