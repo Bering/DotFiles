@@ -103,13 +103,14 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-C-<Right>",                sendMessage Expand)
                    , ("M-C-<Down>",                 sendMessage MirrorShrink)
                    , ("M-C-<Up>",                   sendMessage MirrorExpand)
-                   , ("M-<Return>",                 promote)
+                   , ("M-S-<Return>",               promote)
                    , ("M-<Page_Up>",                rotSlavesUp)
                    , ("M-<Page_Down>",              rotSlavesDown)
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
                    , ("M-b",                        sendMessage ToggleStruts) -- a.k.a. toggle bars
                    -- layout selection
+                   , ("M-<Space>",                  sendMessage NextLayout)
                    , ("M-l l",                      sendMessage $ JumpToLayout "Left")
                    , ("M-l r",                      sendMessage $ JumpToLayout "Right")
                    , ("M-l u",                      sendMessage $ JumpToLayout "Up")
@@ -122,6 +123,7 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-M1-p",                     spawn "rofi -show ssh")
                    , ("M-C-p",                      spawn "Scripts/pass-qr.sh")
                    , ("M-n",                        spawn "kill -s USR1 $(pidof deadd-notification-center)")
+                   , ("M-<Return>",                 spawn myTerminal)
                    , ("M-1",                        spawn myTerminal)
                    , ("M-2",                        spawn "nautilus")
                    , ("M-3",                        spawn "firefox")
@@ -152,6 +154,8 @@ myManageHook = composeAll
                    [ className =? "Gnome-calculator"      --> doCenterFloat
                    , className =? "Gnome-screenshot"      --> doCenterFloat
                    , className =? "Dragon-drag-and-drop"  --> doCenterFloat
+                   , title     =? "Steam Login"           --> doCenterFloat
+                   , title     =? "Steam Guard - Computer Authorization Required" --> doCenterFloat
                    ]
 
 layoutLeft      = renamed [Replace "Left"]
