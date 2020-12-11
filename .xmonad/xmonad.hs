@@ -42,21 +42,17 @@ myStartupHook = do
                   spawnOnce "redshift-gtk &"
                   spawnOnce "udiskie -a -s &"
 
-myWorkspaces = ["\xf015", "2", "3", "\xf1b6", "\xf269", "6", "7", "8", "9", "10", "\xf661", "\xf1bc"]
+myWorkspaces = ["\xf015", "2", "3", "4", "\xf269", "6", "7", "8", "\xf1b6", "10", "11", "\xf1bc"]
 
 myProjects :: [Project]
 myProjects = 
-        [ Project { projectName      = "\xf1b6"
-                  , projectDirectory = "~/"
-                  , projectStartHook = Just $ do spawn "steam"
-                  }
-        , Project { projectName      = "\xf269"
+        [ Project { projectName      = "\xf269"
                   , projectDirectory = "~/"
                   , projectStartHook = Just $ do spawn "firefox"
                   }
-        , Project { projectName      = "\xf661"
-                  , projectDirectory = "~/Téléchargements"
-                  , projectStartHook = Just $ do spawn "transmission-gtk"
+        , Project { projectName      = "\xf1b6"
+                  , projectDirectory = "~/"
+                  , projectStartHook = Just $ do spawn "steam"
                   }
         , Project { projectName      = "\xf1bc"
                   , projectDirectory = "~/"
