@@ -30,9 +30,10 @@ myTerminal = "alacritty"
 
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
+                  spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
                   spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech manjaro.jpg'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
-                  spawnOnce "picom &"
+                  spawnOnce "picom --experimental-backends &"
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x000000 --height 18 --iconspacing 3 &"
                   spawnOnce "nm-applet &"
                   spawnOnce "pasystray &"
