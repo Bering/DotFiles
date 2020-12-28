@@ -7,7 +7,6 @@ image/jpeg=org.gnome.gThumb.desktop;
 image/png=org.gnome.gThumb.desktop;
 image/x-xbitmap=org.gnome.gThumb.desktop;
 text/html=firefox.desktop;
-application/octet-stream=vlc.desktop;
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
 x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
 application/x-shellscript=code-oss.desktop;
