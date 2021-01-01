@@ -17,3 +17,4 @@ run cbatticon &
 run redshift-gtk &
 run udiskie -a -s &
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+run optimus-manager-qt &
