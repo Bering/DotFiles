@@ -143,7 +143,7 @@ groups = [
 ]
 
 layouts = [
-    layout.MonadTall(),
+    layout.MonadTall(ratio=3/5),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
