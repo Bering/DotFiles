@@ -30,6 +30,7 @@ myTerminal = "alacritty"
 
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
+                  spawnOnce "~/Scripts/monitors.setup.dual.sh"
                   spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
                   spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech manjaro.jpg'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
@@ -106,6 +107,7 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-<Page_Down>",              rotSlavesDown)
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
+                   , ("M-<End>",                    withFocused $ windows . W.sink)
                    , ("M-b",                        sendMessage ToggleStruts) -- a.k.a. toggle bars
                    -- layout selection
                    , ("M-<Space>",                  sendMessage NextLayout)
