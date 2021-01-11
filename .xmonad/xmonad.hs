@@ -1,6 +1,6 @@
 import System.Exit
 import System.IO (hPutStrLn)
-import XMonad hiding ( (|||)) -- don't use the normal ||| operator, use the one provided in LayoutCombinators instead
+import XMonad hiding ((|||)) -- don't use the normal ||| operator, use the one provided in LayoutCombinators instead
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Promote
@@ -20,6 +20,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spacing
+import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.Paste
 import XMonad.Util.Run (spawnPipe)
@@ -30,8 +31,7 @@ myTerminal = "alacritty"
 
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
-                  spawnOnce "~/Scripts/monitors.setup.dual.sh"
-                  spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+                  spawnOnce "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit &"
                   spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech manjaro.jpg'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom --experimental-backends &"
@@ -40,10 +40,8 @@ myStartupHook = do
                   spawnOnce "pasystray &"
                   spawnOnce "blueman-tray &"
                   spawnOnce "pamac-tray &"
-                  spawnOnce "cbatticon &"
                   spawnOnce "redshift-gtk &"
                   spawnOnce "udiskie -a -s &"
-                  spawnOnce "optimus-manager-qt &"
 
 myWorkspaces = ["\xf015", "2", "3", "4", "\xf269", "6", "7", "8", "\xf1b6", "10", "11", "\xf1bc"]
 
@@ -115,6 +113,7 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-l r",                      sendMessage $ JumpToLayout "Right")
                    , ("M-l u",                      sendMessage $ JumpToLayout "Up")
                    , ("M-l a",                      sendMessage $ JumpToLayout "Accordion")
+                   , ("M-l c",                      sendMessage $ JumpToLayout "Columns")
                    , ("M-l g",                      sendMessage $ JumpToLayout "Grid")
                    , ("M-l f",                      sendMessage $ JumpToLayout "Full")
                    -- applications
@@ -156,8 +155,18 @@ myManageHook = composeAll
                    , className =? "Dragon-drag-and-drop"  --> doCenterFloat
                    , title     =? "Steam Login"           --> doCenterFloat
                    , title     =? "Steam Guard - Computer Authorization Required" --> doCenterFloat
+                   , className =? "Io.elementary.desktop.agent-polkit" --> doCenterFloat
+                   , title     =? "Open File"             --> doCenterFloat
                    ]
 
+layoutColumns   = renamed [Replace "Columns"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ ThreeColMid 1 (3/100) (1/3)
+layoutGrid      = renamed [Replace "Grid"]
+                $ avoidStruts
+                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
+                $ Grid
 layoutLeft      = renamed [Replace "Left"]
                 $ avoidStruts
                 $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
@@ -174,16 +183,11 @@ layoutAccordion = renamed [Replace "Accordion"]
                 $ avoidStruts
                 $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
                 $ Accordion
-layoutGrid      = renamed [Replace "Grid"]
-                $ avoidStruts
-                $ spacingRaw True (Border 0 0 0 0) False (Border 1 1 1 1) True
-                $ Grid
 layoutFull      = noBorders(Full)
-myLayout        = layoutLeft ||| layoutRight ||| layoutUp ||| layoutAccordion ||| layoutGrid ||| layoutFull
+myLayout        = layoutColumns ||| layoutGrid ||| layoutLeft ||| layoutRight ||| layoutUp ||| layoutAccordion ||| layoutFull
 
 main = do
         xmproc0 <- spawnPipe "xmobar -x 0 /home/phil/.config/xmobar/xmobarrc0"
-        xmproc1 <- spawnPipe "xmobar -x 1 /home/phil/.config/xmobar/xmobarrc1"
         config <- withWindowNavigation (xK_Up, xK_Left, xK_Down, xK_Right)
                 $ ewmh
                 $ fullscreenSupport
@@ -197,7 +201,7 @@ main = do
           , manageHook = myManageHook <+> manageDocks
           , handleEventHook = docksEventHook
           , logHook = dynamicLogWithPP xmobarPP
-                                          { ppOutput  = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
+                                          { ppOutput  = \x -> hPutStrLn xmproc0 x
                                           , ppSep =  " "                                      -- Separators in xmobar
                                           , ppUrgent = xmobarColor "red" "" . wrap "!" "!"    -- Urgent workspace
                                           , ppCurrent = xmobarColor "cyan" "" . wrap "[" "]"  -- Current workspace in xmobar
@@ -205,7 +209,8 @@ main = do
                                           , ppHidden  = xmobarColor "orange" ""               -- Hidden workspaces in xmobar
                                           , ppHiddenNoWindows = xmobarColor "lightgreen" ""   -- Hidden workspaces (no windows)
                                           , ppLayout = wrap " <fc=#888888>\xf928</fc> <fc=white>" "</fc>"
-                                          , ppOrder  = \(ws:l:t:ex) -> [ws,l]
+                                          , ppTitle = wrap " <fc=#888888>\xf2d0</fc> <fc=lightgreen>" "</fc>"            -- Title of active window in xmobar
+                                          , ppOrder  = \(ws:l:t:ex) -> [ws,l,t]
                                           }
                         >> updatePointer (0.5, 0.5) (0, 0)
           }

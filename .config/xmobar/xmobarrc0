@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:SauceCodeProNerdFont:Bold:size=11:antialias=true:hinting=true"
+     font =         "xft:NotoSansMonoNerdFont:Bold:size=11:antialias=true:hinting=true"
    , bgColor =      "black"
    , fgColor =      "white"
    , alpha = 0
@@ -11,7 +11,7 @@ Config {
    , iconRoot = "/home/phil/.config/xmobar/icons"
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fc=#00AA00><icon=manjaro.xbm/></fc> %StdinReader% <action=`gnome-calendar` button=1>%date%</action> }{ %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
+   , template = "%StdinReader% } <action=`gnome-calendar` button=1>%date%</action> { %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
