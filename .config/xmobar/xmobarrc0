@@ -11,7 +11,7 @@ Config {
    , iconRoot = "/home/phil/.config/xmobar/icons"
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% } <action=`gnome-calendar` button=1>%date%</action> { %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
+   , template = "%StdinReader% } <action=`xdg-open 'https://calendar.google.com/'` button=1>%date%</action> { %multicpu% %cpufreq% %multicoretemp% %memory% %disku% %diskio% %dynnetwork% %trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
