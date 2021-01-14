@@ -32,7 +32,7 @@ myTerminal = "alacritty"
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
                   spawnOnce "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit &"
-                  spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo tech manjaro.jpg'"
+                  spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo.tech.ultra-wide.png'"
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom --experimental-backends &"
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x000000 --height 18 --iconspacing 3 &"
@@ -131,12 +131,11 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-w",                        kill)
                    , ("M-k",                        spawn "dm-tool lock")
                    , ("<XF86ModeLock>",             spawn "dm-tool lock")
-                   , ("<XF86HomePage>",             spawn "nautilus")
-                   , ("<XF86Calculator>",           spawn "gnome-calculator")
                    , ("<XF86AudioMute>",            spawn "amixer -D pulse set Master 1+ toggle")
-                   , ("<XF86AudioLowerVolume>",     spawn "amixer set Master 5%- unmute")
-                   , ("<XF86AudioRaiseVolume>",     spawn "amixer set Master 5%+ unmute")
+                   , ("<XF86AudioLowerVolume>",     spawn "amixer -D pulse set Master 1%- unmute")
+                   , ("<XF86AudioRaiseVolume>",     spawn "amixer -D pulse set Master 1%+ unmute")
                    , ("<XF86AudioPlay>",            spawn "playerctl play-pause")
+                   , ("<XF86AudioStop>",            spawn "playerctl stop")
                    , ("<XF86AudioPrev>",            spawn "playerctl previous")
                    , ("<XF86AudioNext>",            spawn "playerctl next")
                    , ("<Print>",                    spawn "gnome-screenshot --interactive")
