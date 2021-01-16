@@ -93,6 +93,7 @@ myKeysToRemove =   [ "M-S-<Return>"  -- terminal
 myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-s r",                      restart "xmonad" True)
                    , ("M-s x",                      io exitSuccess)
+                   , ("M-s s",                      spawn "systemctl suspend")
                    , ("M-s b",                      spawn "sudo shutdown -r now")
                    , ("M-s h",                      spawn "sudo shutdown now")
                    -- layout manipulation
@@ -138,7 +139,7 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("<XF86AudioStop>",            spawn "playerctl stop")
                    , ("<XF86AudioPrev>",            spawn "playerctl previous")
                    , ("<XF86AudioNext>",            spawn "playerctl next")
-                   , ("<Print>",                    spawn "gnome-screenshot --interactive")
+                   , ("<Print>",                    spawn "io.elementary.screenshot-tool")
                    ]
                    -- workspaces (f1 - f12)
                    ++
