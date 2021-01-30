@@ -72,16 +72,16 @@ Config {
         -- memory usage monitor
         , Run Memory         [ "--template" ,"<fc=#888888>\xf2db</fc> <free>M"
                              , "--Low"      , "4096"
-                             , "--High"     , "12288"
+                             , "--High"     , "24576"
                              , "--low"      , "red"
                              , "--normal"   , "darkorange"
                              , "--high"     , "#00AA00"
                              ] 10
 
-        , Run DiskU          [ ("/", "<fc=#888888>\xf7c9</fc> / <fc=darkorange><free></fc>"), ("/run/media/phil/Data", "<fc=#888888>\xf7c9</fc> Data <fc=darkorange><free></fc>") ]
+        , Run DiskU          [ ("/", "<fc=#888888>\xf7c9</fc> / <fc=darkorange><free></fc>"), ("/home/phil/Data", "<fc=#888888>\xf7c9</fc> Data <fc=darkorange><free></fc>") ]
                              [] 30
 
-        , Run DiskIO         [ ("/", "<fc=#888888>\xf7c9</fc> <read>/<write>"), ("/run/media/phil/Data", "<fc=#888888>\xf7c9</fc> <read>/<write>") ]
+        , Run DiskIO         [ ("/", "<fc=#888888>\xf7c9</fc> <read>/<write>"), ("/home/phil/Data", "<fc=#888888>\xf7c9</fc> <read>/<write>") ]
                              [] 10
 
         -- network activity monitor (dynamic interface resolution)
