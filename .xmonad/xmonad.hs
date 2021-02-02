@@ -32,7 +32,7 @@ myTerminal = "alacritty"
 myStartupHook = do
                   spawnOnce "deadd-notification-center &"
                   spawnOnce "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit &"
-                  spawnOnce "feh --no-fehbg --bg-scale '/home/phil/Images/camo.tech.ultra-wide.png'"
+                  spawnOnce "feh --no-fehbg --bg-scale /home/phil/Images/milky.way.jpg"
                   spawnOnce "xsetroot -cursor_name left_ptr"
                   spawnOnce "picom --experimental-backends &"
                   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x000000 --height 18 --iconspacing 3 &"
@@ -156,6 +156,7 @@ myManageHook = composeAll
                    , title     =? "Steam Login"           --> doCenterFloat
                    , title     =? "Steam Guard - Computer Authorization Required" --> doCenterFloat
                    , className =? "Io.elementary.desktop.agent-polkit" --> doCenterFloat
+                   , className =? "Io.elementary.screenshot-tool" --> doCenterFloat
                    , title     =? "Open File"             --> doCenterFloat
                    ]
 
