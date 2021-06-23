@@ -107,9 +107,11 @@ myAdditionalKeys = [ ("M-s l",                      spawn "dm-tool lock")
                    , ("M-<KP_Add>",                 sendMessage (IncMasterN 1))
                    , ("M-<KP_Subtract>",            sendMessage (IncMasterN (-1)))
                    , ("M-<End>",                    withFocused $ windows . W.sink)
-                   , ("M-b",                        sendMessage ToggleStruts) -- a.k.a. toggle bars
+                   , ("M-b c",                      spawn "bluetoothctl -- connect 74:45:CE:24:92:DE")
+                   , ("M-b d",                      spawn "bluetoothctl -- disconnect")
                    -- layout selection
                    , ("M-<Space>",                  sendMessage NextLayout)
+                   , ("M-l b",                      sendMessage ToggleStruts) -- a.k.a. toggle bars
                    , ("M-l l",                      sendMessage $ JumpToLayout "Left")
                    , ("M-l r",                      sendMessage $ JumpToLayout "Right")
                    , ("M-l u",                      sendMessage $ JumpToLayout "Up")
