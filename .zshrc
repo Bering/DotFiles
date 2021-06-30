@@ -6,11 +6,11 @@ SAVEHIST=1000
 
 
 # Autocomplete (compinstall)
+compinit
 zstyle :compinstall filename '/home/phil/.zshrc'
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 autoload -Uz compinit
-compinit
 
 
 # Autosuggestions
@@ -35,7 +35,10 @@ bindkey "\e[1;5C" forward-word
 
 
 # Aliases
+alias cat='bat'
 alias ls='lsd --group-dirs first --date +"%Y-%m-%d %H:%M:%S"'
+alias ll='ls -l'
+alias la='ls -la'
 alias config='git --git-dir=/home/phil/DotFiles --work-tree=/home/phil $argv'
 
 
@@ -62,9 +65,10 @@ PROMPT="
 %B│ %j background jobs.)%b
 %B%(?..%{$fg[red]%})╰─>%(?.. [%?])%{$reset_color%}%b "
 
+PATH="${PATH}:/home/phil/Scripts"
 
 # Autorun
 #chafa -s 60x45 ~/Data/Pictures/Kyrsha\ devant\ l\'ordi.jpg
-cat ~/Images/manjaro-banner.logo
+/usr/bin/cat ~/Images/manjaro-banner.logo
 echo
 fortune -a
